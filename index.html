@@ -3,431 +3,728 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ashutosh Omane — Video Editor</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<title>Ashutosh Omane — Video Editor & Motion Designer</title>
+
+<!-- ─── SEO ──────────────────────────────────────────── -->
+<meta name="description" content="Ashutosh Omane — Video Editor & Motion Designer based in Pune, India. Specialising in long-form storytelling, short-form content, and motion graphics.">
+<meta name="author" content="Ashutosh Omane">
+<meta name="keywords" content="video editor, motion designer, YouTube editor, short form, long form, Pune, India, Premiere Pro, After Effects">
+
+<!-- ─── OPEN GRAPH ────────────────────────────────────── -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ashutosh Omane — Video Editor & Motion Designer">
+<meta property="og:description" content="Crafting cinematic stories through long-form storytelling and short-form content that commands attention.">
+<meta property="og:image" content="https://og-image-placeholder.vercel.app/Ashutosh%20Omane.png">
+<meta property="og:url" content="https://ashutoshomane.com">
+<meta property="og:site_name" content="Ashutosh Omane Portfolio">
+
+<!-- ─── TWITTER CARD ──────────────────────────────────── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ashutosh Omane — Video Editor & Motion Designer">
+<meta name="twitter:description" content="Crafting cinematic stories through long-form storytelling and short-form content.">
+<meta name="twitter:image" content="https://og-image-placeholder.vercel.app/Ashutosh%20Omane.png">
+
+<!-- ─── FAVICON (SVG inline) ─────────────────────────── -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23070707'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-weight='700' font-size='20' fill='%23e02020'>A</text></svg>">
+
+<!-- ─── FONTS ─────────────────────────────────────────── -->
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
 <style>
+/* ─── TOKENS ─────────────────────────────────────────── */
 :root {
-  --bg: #080808;
-  --bg2: #0f0f0f;
-  --card: #111111;
-  --card2: #161616;
-  --red: #e63030;
-  --red2: #ff4444;
-  --white: #f5f5f5;
-  --text: #c8c8c8;
-  --muted: #666;
-  --border: rgba(255,255,255,0.07);
-  --border2: rgba(255,255,255,0.04);
+  --bg:      #070707;
+  --bg2:     #0d0d0d;
+  --card:    #0f0f0f;
+  --card2:   #151515;
+  --red:     #e02020;
+  --red2:    #ff3333;
+  --red-dim: rgba(224,32,32,0.1);
+  --white:   #f0f0f0;
+  --text:    #aaa;
+  --muted:   #505050;
+  --line:    rgba(255,255,255,0.07);
+  --line2:   rgba(255,255,255,0.035);
 }
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
 body {
   background: var(--bg);
   color: var(--text);
   font-family: 'DM Sans', sans-serif;
-  font-size: 16px;
-  line-height: 1.75;
+  font-size: 15px;
+  line-height: 1.8;
   overflow-x: hidden;
 }
 
-/* NAV */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 1.2rem 6vw;
-  background: rgba(8,8,8,0.95);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border2);
+/* ─── FILM GRAIN (animated) ──────────────────────────── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 999; pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  animation: grainShift 0.5s steps(1) infinite;
 }
+@keyframes grainShift {
+  0%   { background-position:   0px   0px; }
+  20%  { background-position: -30px -15px; }
+  40%  { background-position:  20px  25px; }
+  60%  { background-position: -10px  30px; }
+  80%  { background-position:  35px -20px; }
+  100% { background-position:   5px  10px; }
+}
+
+/* ─── HERO SCANLINES ─────────────────────────────────── */
+#hero::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    rgba(0,0,0,0.08) 3px,
+    rgba(0,0,0,0.08) 4px
+  );
+}
+
+/* ─── HERO VIGNETTE ──────────────────────────────────── */
+#hero::after {
+  content: '';
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 65% at 50% 46%, rgba(224,32,32,0.08) 0%, transparent 68%),
+    radial-gradient(ellipse 100% 40% at 50% 100%, rgba(224,32,32,0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 140% 60% at 50% 50%, transparent 55%, rgba(0,0,0,0.6) 100%);
+}
+
+/* ─── SPOTLIGHT (mouse follow) ───────────────────────── */
+#spotlight {
+  position: fixed; inset: 0; z-index: 1; pointer-events: none;
+  background: radial-gradient(circle 420px at 50% 50%, rgba(224,32,32,0.035) 0%, transparent 70%);
+  transition: background 0.08s linear;
+}
+
+/* ─── NAV ────────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.1rem 5vw;
+  background: rgba(7,7,7,0.9);
+  backdrop-filter: blur(24px) saturate(1.5);
+  border-bottom: 1px solid var(--line2);
+  transition: padding .35s ease;
+}
+nav.scrolled { padding: 0.7rem 5vw; }
+
 .nav-brand {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.3rem; letter-spacing: 0.12em;
-  color: var(--white);
+  font-size: 1.25rem; letter-spacing: 0.18em;
+  color: var(--white); text-decoration: none;
+  flex-shrink: 0;
 }
 .nav-brand span { color: var(--red); }
-.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+
+.nav-links { display: flex; gap: 2.6rem; list-style: none; }
 .nav-links a {
   color: var(--muted); text-decoration: none;
   font-family: 'DM Mono', monospace;
-  font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
-  transition: color .2s;
+  font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase;
+  transition: color .2s; position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+  height: 1px; background: var(--red);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .25s ease;
 }
 .nav-links a:hover { color: var(--white); }
+.nav-links a:hover::after { transform: scaleX(1); }
 
-/* HERO - CENTERED & SCALED UP */
-#hero {
-  min-height: 100vh;
-  display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
-  padding: 9rem 6vw 5rem;
-  position: relative; z-index: 1;
-  background:
-    radial-gradient(ellipse 60% 70% at 50% 50%, rgba(230,48,48,0.06) 0%, transparent 60%);
+.nav-hire {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 0.55rem 1.4rem; text-decoration: none;
+  background: var(--red); color: var(--white);
+  border: 1px solid var(--red);
+  transition: all .2s; flex-shrink: 0;
 }
+.nav-hire:hover { background: var(--red2); border-color: var(--red2); }
+
+/* Mobile hamburger */
+.nav-hamburger {
+  display: none;
+  flex-direction: column; gap: 5px; cursor: pointer;
+  padding: 4px;
+}
+.nav-hamburger span {
+  display: block; width: 22px; height: 1px; background: var(--white);
+  transition: all .25s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+
+.nav-mobile-menu {
+  display: none;
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 499;
+  background: rgba(7,7,7,0.97);
+  flex-direction: column; align-items: center; justify-content: center;
+  gap: 2.5rem;
+}
+.nav-mobile-menu.open { display: flex; }
+.nav-mobile-menu a {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem; letter-spacing: 0.1em;
+  color: var(--white); text-decoration: none;
+  transition: color .2s;
+}
+.nav-mobile-menu a:hover { color: var(--red); }
+.nav-mobile-menu .mob-hire {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase;
+  padding: 0.8rem 2.5rem; margin-top: 0.5rem;
+  background: var(--red); color: var(--white);
+  border: 1px solid var(--red);
+}
+
+/* ─── HERO ───────────────────────────────────────────── */
+#hero {
+  min-height: 100svh;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center; text-align: center;
+  padding: 9rem 6vw 6rem;
+  position: relative; z-index: 1;
+}
+
 .hero-eyebrow {
   font-family: 'DM Mono', monospace;
-  font-size: 0.8rem; letter-spacing: 0.28em; text-transform: uppercase;
-  color: var(--red); margin-bottom: 1.5rem;
-  display: flex; align-items: center; justify-content: center; gap: 0.8rem;
+  font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 2rem;
+  display: flex; align-items: center; justify-content: center; gap: 1rem;
+  opacity: 0; animation: fadeUp .7s .1s forwards;
 }
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content: ''; display: block; width: 28px; height: 1px; background: var(--red); opacity: .55;
+}
+
+/* ─── SPLIT TEXT h1 ──────────────────────────────────── */
 h1 {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(5rem, 12vw, 10rem);
-  line-height: 0.95; letter-spacing: 0.03em;
-  color: var(--white);
+  font-size: clamp(5rem, 13vw, 11rem);
+  line-height: 0.9; letter-spacing: 0.03em;
+  position: relative; z-index: 2;
 }
-h1 .name-sub {
+/* gradient fill on main name */
+.h1-main {
+  display: block;
+  background: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.h1-ghost {
   display: block;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(245,245,245,0.3);
+  -webkit-text-stroke: 1px rgba(240,240,240,0.15);
+  transition: -webkit-text-stroke-color .4s;
 }
+h1:hover .h1-ghost { -webkit-text-stroke-color: rgba(240,240,240,0.32); }
+
+/* Individual letter spans for stagger */
+.h1-main .letter, .h1-ghost .letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(30px) rotate(3deg);
+  animation: letterDrop 0.5s ease forwards;
+}
+
+/* Fix invisible/blinking hero name */
+.h1-main .letter{
+  color:#fff;
+  background:inherit;
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  will-change:transform,opacity;
+}
+/* Glitch flash on ASHUTOSH */
+@keyframes glitchFlash {
+  0%   { text-shadow: none; }
+  10%  { text-shadow: 2px 0 0 rgba(224,32,32,0.8), -2px 0 0 rgba(0,200,255,0.5); }
+  20%  { text-shadow: none; }
+  30%  { text-shadow: -3px 0 0 rgba(224,32,32,0.6); }
+  40%  { text-shadow: none; }
+  100% { text-shadow: none; }
+}
+.h1-main { animation: glitchFlash 1.2s 0.9s ease forwards; }
+
+@keyframes letterDrop {
+  to { opacity: 1; transform: none; }
+}
+
 .hero-desc {
-  font-size: 1.15rem; font-weight: 300;
-  color: var(--muted); max-width: 600px;
-  margin: 2rem auto 2.5rem; line-height: 1.85;
+  font-size: 1rem; font-weight: 300;
+  color: var(--muted); max-width: 500px;
+  margin: 2.5rem auto 2.5rem; line-height: 1.95;
+  opacity: 0; animation: fadeUp .8s .9s forwards;
+  position: relative; z-index: 2;
 }
-.badge-row { display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 3rem; }
+
+.badge-row {
+  display: flex; justify-content: center; gap: 0.7rem; flex-wrap: wrap;
+  margin-bottom: 2.8rem;
+  opacity: 0; animation: fadeUp .8s 1.05s forwards;
+  position: relative; z-index: 2;
+}
 .badge {
   font-family: 'DM Mono', monospace;
-  font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--border); color: var(--muted);
+  font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase;
+  padding: 0.5rem 1.1rem;
+  border: 1px solid var(--red); color: var(--red);
+  background: var(--red-dim); text-decoration: none;
+  transition: background .2s, color .2s, transform .2s;
+  display: inline-block;
 }
-.badge.hi { border-color: rgba(230,48,48,0.35); color: var(--red); }
-.cta-row { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+.badge:hover { background: var(--red); color: var(--white); transform: translateY(-2px); }
+
+.cta-row {
+  display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp .8s 1.18s forwards;
+  position: relative; z-index: 2;
+}
 .btn {
   font-family: 'DM Mono', monospace;
-  font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase;
+  font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
   padding: 1rem 2.5rem; text-decoration: none;
-  transition: all .25s; display: inline-block; cursor: pointer;
+  transition: all .22s; display: inline-block;
 }
-.btn-r {
-  background: var(--red); color: var(--white); border: 1px solid var(--red);
-}
-.btn-r:hover { background: var(--red2); border-color: var(--red2); }
-.btn-o {
-  background: transparent; color: var(--muted); border: 1px solid var(--border);
-}
-.btn-o:hover { color: var(--white); border-color: rgba(255,255,255,0.2); }
+.btn-r { background: var(--red); color: var(--white); border: 1px solid var(--red); }
+.btn-r:hover { background: var(--red2); border-color: var(--red2); transform: translateY(-2px); }
+.btn-o { background: transparent; color: var(--muted); border: 1px solid var(--line); }
+.btn-o:hover { color: var(--white); border-color: rgba(255,255,255,0.2); transform: translateY(-2px); }
 
-/* SECTION WRAP */
-.sw { position: relative; z-index: 1; }
+.scroll-hint {
+  position: absolute; bottom: 2.2rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  font-family: 'DM Mono', monospace; font-size: 0.52rem;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted);
+  opacity: 0; animation: fadeIn 1s 1.6s forwards; z-index: 2;
+}
+.scroll-hint-line {
+  display: block; width: 1px; height: 38px;
+  background: linear-gradient(to bottom, var(--red), transparent);
+  animation: pulseLine 1.9s ease-in-out infinite;
+}
 
-/* SECTION HEAD */
-.sec-head { padding: 5rem 6vw 2.5rem; }
+/* ─── MARQUEE ────────────────────────────────────────── */
+.marquee-wrap {
+  overflow: hidden;
+  border-top: 1px solid var(--line2);
+  border-bottom: 1px solid var(--line2);
+  background: var(--bg2);
+  padding: 0.85rem 0;
+  position: relative; z-index: 2;
+  user-select: none;
+}
+.marquee-track {
+  display: flex;
+  animation: marquee 30s linear infinite;
+  width: max-content;
+}
+.marquee-wrap:hover .marquee-track { animation-play-state: paused; }
+.marquee-item {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.9rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--muted); padding: 0 2.2rem;
+  white-space: nowrap; transition: color .2s;
+}
+.marquee-item:hover { color: var(--white); }
+.marquee-sep {
+  color: var(--red); align-self: center;
+  font-size: 0.5rem; padding: 0; line-height: 1;
+}
+
+/* ─── SECTION SHELL ──────────────────────────────────── */
+.sw { position: relative; z-index: 2; }
+.sec-head { padding: 5rem 5vw 2.5rem; position: relative; }
+
+/* Big ghost section number */
+.sec-num {
+  display: none;
+}
+
 .sec-label {
   font-family: 'DM Mono', monospace;
-  font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase;
-  color: var(--red); margin-bottom: 0.8rem;
-  display: flex; align-items: center; gap: 0.7rem;
+  font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 0.9rem;
+  display: flex; align-items: center; gap: 0.9rem;
 }
-.sec-label::before { content:''; display:block; width:20px; height:1px; background:var(--red); }
+.sec-label::before { content:''; display:block; width:20px; height:1px; background:var(--red); opacity:.6; }
+
 h2 {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  letter-spacing: 0.05em; color: var(--white); line-height: 1;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  letter-spacing: 0.04em; color: var(--white); line-height: 0.95;
 }
-h2 span { color: var(--red); }
-.sec-sub { font-size: 0.93rem; color: var(--muted); margin-top: 0.6rem; max-width: 460px; }
+h2 .accent { color: var(--red); }
+.sec-sub { font-size: 0.88rem; color: var(--muted); margin-top: 0.75rem; max-width: 400px; line-height: 1.7; }
 
-/* PROJECT CARDS - LARGER UNIFORM GRID */
+/* ─── FULL-BLEED RED DIVIDER ─────────────────────────── */
+.divider-red {
+  display: block; width: 100%; height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--red) 20%, var(--red) 80%, transparent 100%);
+  opacity: 0.25; position: relative; z-index: 2;
+  border: none; margin: 0;
+}
+
+/* ─── WORK ───────────────────────────────────────────── */
+.work-sublabel {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  color: var(--white);
+  letter-spacing: 0.12em; letter-spacing: 0.26em; text-transform: uppercase;
+  color: var(--muted); padding: 0 5vw; margin: 0 0 1rem;
+  display: flex; align-items: center; gap: 0.7rem;
+}
+.work-sublabel::before {
+  content:''; display:block; width:14px; height:1px; background:var(--muted); opacity:.4;
+}
+
 .proj-grid {
-  padding: 0 6vw 2.5rem;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-  gap: 1px;
-  background: var(--border2);
-  border: 1px solid var(--border2);
-  margin: 0 6vw 0;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  border-left: 1px solid var(--line2);
+  border-top: 1px solid var(--line2);
+  margin: 0 5vw;
 }
 .proj-card {
   background: var(--card);
-  overflow: hidden; text-decoration: none; display: flex; flex-direction: column;
-  transition: background .3s;
+  border-right: 1px solid var(--line2);
+  border-bottom: 1px solid var(--line2);
+  overflow: hidden; display: flex; flex-direction: column;
   position: relative;
+  transition: background .3s, box-shadow .3s;
 }
-.proj-card:hover { background: var(--card2); }
+.proj-card:hover {
+  background: var(--card2);
+  box-shadow: 0 0 40px rgba(224,32,32,0.06), inset 0 0 0 1px rgba(224,32,32,0.12);
+}
+.proj-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; bottom: 0; width: 2px;
+  background: var(--red);
+  transform: scaleY(0); transform-origin: top;
+  transition: transform .35s ease; z-index: 3;
+}
+.proj-card:hover::before { transform: scaleY(1); }
 
 .proj-thumb {
   width: 100%; aspect-ratio: 16/9;
-  display: flex; align-items: flex-end; justify-content: flex-start;
-  position: relative; overflow: hidden;
-  padding: 1rem;
+  position: relative; overflow: hidden; background: #080808;
 }
-/* thumb backgrounds — dark cinematic */
-.t1 { background: linear-gradient(160deg, #0a0e14 0%, #141a24 60%, #0d1018 100%); }
-.t2 { background: linear-gradient(160deg, #0e0a08 0%, #1e1408 60%, #180e04 100%); }
-.t3 { background: linear-gradient(160deg, #080d0a 0%, #0d1810 60%, #081408 100%); }
-.t4 { background: linear-gradient(160deg, #0e080e 0%, #18081e 60%, #100814 100%); }
-.t5 { background: linear-gradient(160deg, #0a0a08 0%, #181408 60%, #100e04 100%); }
+.proj-thumb iframe {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%; border: none;
+}
 
-.thumb-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(8,8,8,0.85) 0%, rgba(8,8,8,0.1) 60%, transparent 100%);
+.proj-body {
+  padding: 1.3rem 1.5rem 1.5rem;
+  flex: 1; display: flex; flex-direction: column;
+  border-top: 1px solid var(--line2);
 }
-.thumb-num {
-  position: absolute; top: 1rem; right: 1rem; z-index: 2;
+.proj-num {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 3.5rem; line-height: 1;
-  color: rgba(255,255,255,0.04);
-  letter-spacing: 0.05em;
+  font-size: 0.75rem; letter-spacing: 0.14em;
+  color: var(--red); margin-bottom: 0.4rem; opacity: .65;
 }
-
-.proj-body { padding: 1.2rem 1.4rem 1.5rem; flex: 1; display: flex; flex-direction: column; }
 .proj-title {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.5rem; letter-spacing: 0.06em;
-  color: var(--white); line-height: 1.1; margin-bottom: 0.3rem;
+  font-size: 1.5rem; letter-spacing: 0.05em;
+  color: var(--white); line-height: 1; margin-bottom: 0.3rem;
 }
 .proj-type {
   font-family: 'DM Mono', monospace;
-  font-size: 0.63rem; letter-spacing: 0.12em; text-transform: uppercase;
+  font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase;
   color: var(--muted); margin-bottom: 0.75rem;
 }
-.proj-desc {
-  font-size: 0.88rem; color: var(--muted);
-  line-height: 1.7; flex: 1; margin-bottom: 1.2rem;
-}
+.proj-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.75; flex: 1; }
 
-/* MINI CONTACT */
+/* ─── MINI CTA ───────────────────────────────────────── */
 .mini-cta {
-  margin: 2rem 6vw 5rem;
-  padding: 1.6rem 2rem;
-  border: 1px solid var(--border2);
+  margin: 2.5rem 5vw 5rem;
+  padding: 1.4rem 1.8rem;
   background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--red);
   display: flex; align-items: center; justify-content: space-between;
   flex-wrap: wrap; gap: 1rem;
-  border-left: 2px solid var(--red);
 }
-.mini-cta-text { font-size: 0.95rem; color: var(--muted); }
+.mini-cta-text { font-size: 0.9rem; color: var(--muted); }
 .mini-cta-text strong { color: var(--white); font-weight: 500; }
 .mini-btns { display: flex; gap: 0.7rem; flex-wrap: wrap; }
 .mini-btn {
   font-family: 'DM Mono', monospace;
-  font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
-  padding: 0.6rem 1.3rem; text-decoration: none;
-  color: var(--white); border: 1px solid var(--border);
-  background: transparent; transition: all .25s;
+  font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 0.55rem 1.2rem; text-decoration: none;
+  color: var(--white); border: 1px solid var(--line);
+  background: transparent; transition: all .22s;
 }
 .mini-btn:hover { border-color: var(--red); color: var(--red); }
 
-/* DIVIDER */
-.divider { border: none; border-top: 1px solid var(--border2); margin: 0 6vw; position: relative; z-index: 1; }
-
-/* ABOUT */
+/* ─── ABOUT ──────────────────────────────────────────── */
 .about-inner {
-  padding: 0 6vw 5rem;
-  display: grid; grid-template-columns: 1.1fr 0.9fr;
+  display: grid; grid-template-columns: 1.15fr 0.85fr;
   gap: 6rem; align-items: start;
-  position: relative; z-index: 1;
+  padding: 0 5vw 5.5rem;
 }
 .about-bio {
-  font-size: 0.98rem; font-weight: 300;
-  color: var(--text); line-height: 1.9;
+  font-size: 0.97rem; font-weight: 300;
+  color: var(--text); line-height: 1.95;
 }
-.about-bio p { margin-bottom: 1.1rem; }
+.about-bio p { margin-bottom: 1.2rem; }
 .about-bio strong { color: var(--white); font-weight: 500; }
-.about-bio p:first-child { font-size: 1.05rem; }
+.about-bio p:first-child { font-size: 1.06rem; }
 
-/* TRAINING BOX */
-.training-box {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-top: 2px solid var(--red);
-  padding: 1.6rem;
-  margin-bottom: 0;
+.sw-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  background: var(--line2); border: 1px solid var(--line2);
 }
-.training-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--red); margin-bottom: 0.5rem;
+.sw-card {
+  background: var(--card); padding: 1.4rem 1.2rem;
+  display: flex; flex-direction: column; gap: 0.3rem;
+  transition: background .25s; position: relative; overflow: hidden;
 }
-.training-school {
+.sw-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+  background: var(--red); transform: scaleX(0); transform-origin: left;
+  transition: transform .3s;
+}
+.sw-card:hover { background: var(--card2); }
+.sw-card:hover::after { transform: scaleX(1); }
+.sw-ico { font-size: 1.3rem; margin-bottom: 0.2rem; }
+.sw-name {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.3rem; letter-spacing: 0.06em;
-  color: var(--white); margin-bottom: 0.3rem;
+  font-size: 1rem; letter-spacing: 0.07em; color: var(--white);
 }
-.training-course {
-  font-size: 0.85rem; color: var(--muted); margin-bottom: 1.2rem;
-}
-.training-items {
-  list-style: none; display: flex; flex-direction: column; gap: 0.5rem;
-}
-.training-items li {
-  font-size: 0.85rem; color: var(--text);
-  display: flex; align-items: center; gap: 0.7rem;
-}
-.training-items li::before {
-  content: '';
-  display: block; width: 14px; height: 1px;
-  background: var(--red); flex-shrink: 0;
-}
-
-/* SKILLS */
-.skills-col { display: flex; flex-direction: column; gap: 1.3rem; }
-.skill-row {}
-.skill-top { display: flex; justify-content: space-between; margin-bottom: 0.45rem; }
-.skill-name {
+.sw-role {
   font-family: 'DM Mono', monospace;
-  font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text);
-}
-.skill-pct { font-size: 0.68rem; color: var(--muted); font-family: 'DM Mono', monospace; }
-.skill-track { height: 1px; background: rgba(255,255,255,0.06); }
-.skill-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--red), rgba(230,48,48,0.3));
+  font-size: 0.55rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
 }
 
-/* SERVICES */
-.srv-inner { padding: 0 6vw 5rem; position: relative; z-index: 1; }
+/* ─── SERVICES ───────────────────────────────────────── */
 .srv-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-left: 1px solid var(--line2);
+  border-top: 1px solid var(--line2);
+  margin: 0 5vw 5rem;
 }
 .srv-card {
-  background: var(--card); padding: 1.8rem 1.5rem;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  transition: all .3s ease;
+  background: var(--card); padding: 2rem 1.6rem 1.8rem;
+  border-right: 1px solid var(--line2); border-bottom: 1px solid var(--line2);
+  transition: background .3s, box-shadow .3s; position: relative; overflow: hidden;
 }
-.srv-card:hover { 
-  background: var(--card2); 
-  border-color: rgba(230, 48, 48, 0.4); 
+.srv-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--red);
+  transform: scaleX(0); transform-origin: left; transition: transform .35s ease;
 }
-.srv-ico { font-size: 1.5rem; margin-bottom: 0.9rem; }
+.srv-card:hover {
+  background: var(--card2);
+  box-shadow: 0 0 30px rgba(224,32,32,0.05);
+}
+.srv-card:hover::before { transform: scaleX(1); }
+.srv-ico { font-size: 1.5rem; margin-bottom: 1.1rem; display: block; transition: transform .3s; }
+.srv-card:hover .srv-ico { transform: scale(1.12); }
 .srv-title {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.1rem; letter-spacing: 0.07em;
-  color: var(--white); margin-bottom: 0.5rem;
+  font-size: 1.15rem; letter-spacing: 0.07em; color: var(--white); margin-bottom: 0.55rem;
 }
-.srv-desc { font-size: 0.87rem; color: var(--muted); line-height: 1.7; }
+.srv-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.75; }
 
-/* CONTACT */
-.contact-inner {
-  padding: 0 6vw 8rem;
+/* ─── CONTACT ────────────────────────────────────────── */
+.contact-wrap {
+  padding: 0 5vw 7rem;
   display: flex; flex-direction: column; align-items: center; text-align: center;
-  position: relative; z-index: 1;
 }
-.contact-intro { font-size: 0.98rem; color: var(--muted); max-width: 440px; margin: 0.8rem 0 2.5rem; }
+.contact-intro { font-size: 0.96rem; color: var(--muted); max-width: 400px; margin: 1rem 0 2.5rem; line-height: 1.8; }
 .contact-pills { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
 .contact-pill {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
-  padding: 0.85rem 1.8rem; text-decoration: none;
-  border: 1px solid var(--border); color: var(--muted);
-  display: flex; align-items: center; gap: 0.6rem;
-  transition: all .25s;
+  font-family: 'DM Mono', monospace; font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.9rem 1.8rem; text-decoration: none;
+  border: 1px solid var(--line); color: var(--muted);
+  display: flex; align-items: center; gap: 0.6rem; transition: all .22s;
 }
-.contact-pill:hover { color: var(--white); border-color: rgba(255,255,255,0.2); }
+.contact-pill:hover { color: var(--white); border-color: rgba(255,255,255,0.18); }
 .contact-pill.primary { border-color: var(--red); color: var(--red); }
 .contact-pill.primary:hover { background: var(--red); color: var(--white); }
 
-/* FOOTER */
+/* ─── FOOTER ─────────────────────────────────────────── */
 footer {
-  position: relative; z-index: 1;
-  border-top: 1px solid var(--border2);
-  padding: 1.5rem 6vw;
+  position: relative; z-index: 2;
+  border-top: 1px solid var(--line2);
+  padding: 1.4rem 5vw;
   display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem;
 }
-.footer-brand {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1rem; letter-spacing: 0.1em; color: var(--white);
-}
+.footer-brand { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 0.13em; color: var(--white); }
 .footer-brand span { color: var(--red); }
-.footer-note {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.62rem; color: rgba(102,102,102,0.5); letter-spacing: 0.07em;
+.footer-note { font-family: 'DM Mono', monospace; font-size: 0.57rem; color: rgba(80,80,80,0.55); letter-spacing: 0.08em; }
+
+/* ─── REVEAL ─────────────────────────────────────────── */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ─── KEYFRAMES ──────────────────────────────────────── */
+@keyframes fadeUp  { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
+@keyframes fadeIn  { from { opacity:0; } to { opacity:1; } }
+@keyframes pulseLine {
+  0%,100% { opacity:.35; transform:scaleY(1); }
+  50%      { opacity:1;   transform:scaleY(1.08); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
-@media(max-width:768px){
-  .about-inner { grid-template-columns: 1fr; gap: 3rem; }
-  .nav-links { display: none; }
-  .mini-cta { flex-direction: column; align-items: flex-start; }
-  .proj-grid { margin: 0 4vw; }
+/* ─── RESPONSIVE ─────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .srv-grid { grid-template-columns: 1fr 1fr; }
 }
+@media (max-width: 768px) {
+  .nav-links, .nav-hire { display: none; }
+  .nav-hamburger { display: flex; }
+  .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .sec-num { display: none; }
+  .proj-grid { grid-template-columns: 1fr; margin: 0 4vw; }
+  .srv-grid { margin: 0 4vw 4rem; }
+  .mini-cta { margin: 2rem 4vw 4rem; flex-direction: column; align-items: flex-start; }
+  .about-inner { padding: 0 4vw 4rem; }
+  .sec-head { padding: 3.5rem 4vw 2rem; }
+  .work-sublabel { padding: 0 4vw; }
+}
+@media (max-width: 480px) {
+  #hero { padding: 8rem 5vw 5rem; }
+  .hero-eyebrow { font-size: 0.58rem; letter-spacing: 0.2em; }
+  .badge-row { gap: 0.5rem; }
+  .cta-row { flex-direction: column; align-items: center; }
+  .btn { width: 100%; max-width: 280px; text-align: center; }
+  .srv-grid { grid-template-columns: 1fr; }
+  .contact-pills { flex-direction: column; align-items: center; }
+  .contact-pill { width: 100%; justify-content: center; max-width: 320px; }
+  footer { flex-direction: column; text-align: center; gap: 0.5rem; }
+  .mini-btns { flex-direction: column; width: 100%; }
+  .mini-btn { text-align: center; }
+}
+
+#longform,
+#shortform{
+  scroll-margin-top:120px;
+}
+
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-brand">Ashutosh<span>.</span></div>
+<div id="spotlight"></div>
+
+<!-- ─── MOBILE MENU ────────────────────────────────────── -->
+<div class="nav-mobile-menu" id="mobileMenu">
+  <a href="#work"     onclick="closeMobileMenu()">Work</a>
+  <a href="#about"    onclick="closeMobileMenu()">About</a>
+  <a href="#services" onclick="closeMobileMenu()">Services</a>
+  <a href="#contact"  onclick="closeMobileMenu()">Contact</a>
+  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ashutosh.omane@gmail.com" target="_blank" class="mob-hire">Hire Me</a>
+</div>
+
+<!-- ─── NAV ───────────────────────────────────────────── -->
+<nav id="mainNav">
+  <a class="nav-brand" href="#">Ashutosh<span>.</span></a>
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ashutosh.omane@gmail.com" target="_blank" class="nav-hire">Hire Me</a>
+  <div class="nav-hamburger" id="hamburger" onclick="toggleMobileMenu()">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
 
-<!-- HERO -->
+<!-- ─── HERO ───────────────────────────────────────────── -->
 <section id="hero">
-  <div class="hero-eyebrow">Video Editor · Motion Graphics · AI Workflows</div>
-  <h1>ASHUTOSH<br><span class="name-sub">OMANE</span></h1>
-  <p class="hero-desc">Crafting cinematic stories through long-form storytelling and short-form content that stops the scroll.</p>
+  <div class="hero-eyebrow">Video Editor · Motion Designer</div>
+  <h1 id="heroH1">
+    <span class="h1-main" id="heroName"></span>
+    <span class="h1-ghost" id="heroGhost"></span>
+  </h1>
+  <p class="hero-desc">Crafting cinematic stories through long-form storytelling and short-form content that commands attention.</p>
   <div class="badge-row">
-    <span class="badge hi">Long Form</span>
-    <span class="badge hi">Short Form</span>
-    <span class="badge hi">Motion Graphics</span>
-    <span class="badge hi">AI Workflows</span>
+    <a href="#longform" class="badge">↓ Long Form</a>
+    <a href="#shortform" class="badge">↓ Short Form</a>
   </div>
   <div class="cta-row">
     <a href="#work" class="btn btn-r">View My Work</a>
     <a href="resume.pdf" class="btn btn-o" target="_blank">View Resume</a>
-</div>
+  </div>
+  <div class="scroll-hint">
+    <span class="scroll-hint-line"></span>Scroll
+  </div>
 </section>
 
-<!-- ══ FEATURED WORK ══ -->
+<!-- ─── MARQUEE ───────────────────────────────────────── -->
+<div class="marquee-wrap">
+  <div class="marquee-track" id="marqueeTrack"></div>
+</div>
+
+<!-- ─── WORK ──────────────────────────────────────────── -->
 <div class="sw" id="work">
-  <div class="sec-head">
+  <div class="sec-head reveal">
+    <span class="sec-num">01</span>
     <div class="sec-label">Portfolio</div>
-    <h2>FEATURED <span>WORK</span></h2>
+    <h2>FEATURED <span class="accent">WORK</span></h2>
     <p class="sec-sub">A selection of long-form and short-form projects.</p>
   </div>
 
-  <!-- LONG FORM -->
-  <div class="sec-head" style="padding-top:0; padding-bottom:1.2rem;" id="longform">
-    <div class="sec-label">Long Form</div>
-  </div>
-  <div class="proj-grid">
-
-    <!-- Project 01: Dubai -->
+  <p class="work-sublabel reveal" id="longform">Long Form</p>
+  <div class="proj-grid reveal">
     <div class="proj-card">
-      <div class="proj-thumb" style="padding: 0;">
-        <iframe src="https://www.youtube-nocookie.com/embed/dAMVQ7V5I7E" referrerpolicy="strict-origin-when-cross-origin" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+      <div class="proj-thumb">
+        <iframe src="https://www.youtube-nocookie.com/embed/dAMVQ7V5I7E" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
       </div>
       <div class="proj-body">
+        <p class="proj-num">01</p>
         <p class="proj-title">Dubai</p>
         <p class="proj-type">Long Form · Documentary Style</p>
         <p class="proj-desc">Documentary-style edit featuring storytelling, motion graphics, pacing, and visual structure.</p>
       </div>
     </div>
-
-    <!-- Project 02: Credit System -->
     <div class="proj-card">
-      <div class="proj-thumb" style="padding: 0;">
-        <iframe src="https://www.youtube-nocookie.com/embed/GpUC7dztifI" referrerpolicy="strict-origin-when-cross-origin" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+      <div class="proj-thumb">
+        <iframe src="https://www.youtube-nocookie.com/embed/GpUC7dztifI" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
       </div>
       <div class="proj-body">
+        <p class="proj-num">02</p>
         <p class="proj-title">Credit System</p>
         <p class="proj-type">Long Form · Explainer</p>
         <p class="proj-desc">Educational content focused on information delivery, visual explanations, and audience retention.</p>
       </div>
     </div>
-
-    <!-- Project 03: British Education System -->
     <div class="proj-card">
-      <div class="proj-thumb" style="padding: 0;">
-        <iframe src="https://www.youtube-nocookie.com/embed/VqE7ST3QYgY" referrerpolicy="strict-origin-when-cross-origin" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+      <div class="proj-thumb">
+        <iframe src="https://www.youtube-nocookie.com/embed/VqE7ST3QYgY" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
       </div>
       <div class="proj-body">
+        <p class="proj-num">03</p>
         <p class="proj-title">British Education System</p>
         <p class="proj-type">Long Form · Documentary</p>
-        <p class="proj-desc">Research-driven documentary edit utilizing motion graphics, B-roll integration, and narrative pacing.</p>
+        <p class="proj-desc">Research-driven documentary edit using motion graphics, B-roll integration, and narrative pacing.</p>
       </div>
     </div>
-
   </div>
 
-  <div class="mini-cta">
+  <div class="mini-cta reveal">
     <div class="mini-cta-text">Need a long-form editor? <strong>Let's talk about your project.</strong></div>
     <div class="mini-btns">
       <a class="mini-btn" href="https://mail.google.com/mail/?view=cm&fs=1&to=ashutosh.omane@gmail.com" target="_blank">✉ Email Me</a>
@@ -435,115 +732,122 @@ footer {
     </div>
   </div>
 
-  <!-- SHORT FORM -->
-  <div class="sec-head" style="padding-top:1rem; padding-bottom:1.2rem;" id="shortform">
-    <div class="sec-label">Short Form</div>
-  </div>
-  <!-- REPLACED RESTRICTIVE GRID WITH STANDARD UNIFORM GRID -->
-  <div class="proj-grid">
-
-    <!-- Project 04: BeerBiceps & Ronnie Coleman -->
+  <p class="work-sublabel reveal" id="shortform">Short Form</p>
+  <div class="proj-grid reveal">
     <div class="proj-card">
-      <div class="proj-thumb" style="padding: 0;">
-        <iframe src="https://www.youtube-nocookie.com/embed/6tYzQPLRQNM" referrerpolicy="strict-origin-when-cross-origin" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+      <div class="proj-thumb">
+        <iframe src="https://www.youtube-nocookie.com/embed/6tYzQPLRQNM" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
       </div>
       <div class="proj-body">
+        <p class="proj-num">04</p>
         <p class="proj-title">BeerBiceps & Ronnie Coleman</p>
         <p class="proj-type">Short Form · Edit</p>
         <p class="proj-desc">Dynamic short-form edit featuring subtitles, visual emphasis, and retention-focused pacing.</p>
       </div>
     </div>
-
-    <!-- Project 05: Modern Economy -->
     <div class="proj-card">
-      <div class="proj-thumb" style="padding: 0;">
-        <iframe src="https://www.youtube-nocookie.com/embed/XzVp9AQFETc" referrerpolicy="strict-origin-when-cross-origin" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+      <div class="proj-thumb">
+        <iframe src="https://www.youtube-nocookie.com/embed/XzVp9AQFETc" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
       </div>
       <div class="proj-body">
+        <p class="proj-num">05</p>
         <p class="proj-title">Modern Economy</p>
         <p class="proj-type">Short Form · Explainer</p>
-        <p class="proj-desc">Educational short-form content utilizing motion graphics and concise visual storytelling.</p>
+        <p class="proj-desc">Educational short-form content using motion graphics and concise visual storytelling.</p>
       </div>
     </div>
-
   </div>
-
 </div>
 
-<hr class="divider">
+<hr class="divider-red">
 
-<!-- ABOUT -->
+<!-- ─── ABOUT ─────────────────────────────────────────── -->
 <div class="sw">
-  <div class="sec-head" id="about">
+  <div class="sec-head reveal" id="about">
+    <span class="sec-num">02</span>
     <div class="sec-label">About Me</div>
-    <h2>MY <span>STORY</span></h2>
+    <h2>MY <span class="accent">STORY</span></h2>
   </div>
   <div class="about-inner">
-    <div class="about-bio">
-      <p>I'm <strong>Ashutosh Omane</strong>, a video editor specializing in long-form storytelling, short-form content, motion graphics, and AI-assisted creative workflows.</p>
+    <div class="about-bio reveal">
+      <p>I'm <strong>Ashutosh Omane</strong>, a video editor specialising in long-form storytelling, short-form content, motion graphics, and AI-assisted creative workflows.</p>
       <p>My fascination with video production began from a curiosity about how stories are crafted through editing. What started as an interest gradually evolved into a focused pursuit of visual storytelling and content creation.</p>
       <p>My background in graphic design helped me develop strong visual communication skills, while years spent studying financial markets strengthened my analytical thinking, attention to detail, and problem-solving abilities.</p>
       <p>Today, I combine design principles, storytelling, motion graphics, and modern AI tools to create engaging content for creators, brands, and digital platforms.</p>
-      <p>Based in <strong>Pune, Pimpri-Chinchwad, Maharashtra</strong> and available for on-site, hybrid, and remote opportunities.</p>
+      <p>Based in <strong>Pune, Pimpri-Chinchwad, Maharashtra</strong> — available for on-site, hybrid, and remote opportunities.</p>
     </div>
-    <div>
-      <div style="margin-bottom:0.6rem;">
-        <div class="sec-label" style="margin-bottom:1rem;">Software</div>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
-          <div style="background:var(--card); border: 1px solid var(--border); border-radius: 8px; padding:1.4rem 1.2rem; display:flex; flex-direction:column; gap:0.4rem;">
-            <span style="font-size:1.6rem;">🎬</span>
-            <span style="font-family:'Bebas Neue',sans-serif; font-size:1.05rem; letter-spacing:0.07em; color:var(--white);">Premiere Pro</span>
-            <span style="font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted);">Video Editing</span>
-          </div>
-          <div style="background:var(--card); border: 1px solid var(--border); border-radius: 8px; padding:1.4rem 1.2rem; display:flex; flex-direction:column; gap:0.4rem;">
-            <span style="font-size:1.6rem;">✨</span>
-            <span style="font-family:'Bebas Neue',sans-serif; font-size:1.05rem; letter-spacing:0.07em; color:var(--white);">After Effects</span>
-            <span style="font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted);">Motion Graphics</span>
-          </div>
-          <div style="background:var(--card); border: 1px solid var(--border); border-radius: 8px; padding:1.4rem 1.2rem; display:flex; flex-direction:column; gap:0.4rem;">
-            <span style="font-size:1.6rem;">🖼️</span>
-            <span style="font-family:'Bebas Neue',sans-serif; font-size:1.05rem; letter-spacing:0.07em; color:var(--white);">Photoshop</span>
-            <span style="font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted);">Image Design</span>
-          </div>
-          <div style="background:var(--card); border: 1px solid var(--border); border-radius: 8px; padding:1.4rem 1.2rem; display:flex; flex-direction:column; gap:0.4rem;">
-            <span style="font-size:1.6rem;">🎨</span>
-            <span style="font-family:'Bebas Neue',sans-serif; font-size:1.05rem; letter-spacing:0.07em; color:var(--white);">Illustrator</span>
-            <span style="font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted);">Vector Design</span>
-          </div>
+    <div class="reveal">
+      <div class="sec-label" style="margin-bottom:1rem;">Software</div>
+      <div class="sw-grid">
+        <div class="sw-card">
+          <span class="sw-ico">🎬</span>
+          <span class="sw-name">Premiere Pro</span>
+          <span class="sw-role">Video Editing</span>
+        </div>
+        <div class="sw-card">
+          <span class="sw-ico">✨</span>
+          <span class="sw-name">After Effects</span>
+          <span class="sw-role">Motion Graphics</span>
+        </div>
+        <div class="sw-card">
+          <span class="sw-ico">🖼️</span>
+          <span class="sw-name">Photoshop</span>
+          <span class="sw-role">Image Design</span>
+        </div>
+        <div class="sw-card">
+          <span class="sw-ico">🎨</span>
+          <span class="sw-name">Illustrator</span>
+          <span class="sw-role">Vector Design</span>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<hr class="divider">
+<hr class="divider-red">
 
-<!-- SERVICES -->
+<!-- ─── SERVICES ──────────────────────────────────────── -->
 <div class="sw">
-  <div class="sec-head">
+  <div class="sec-head reveal">
+    <span class="sec-num">03</span>
     <div class="sec-label">What I Offer</div>
     <h2>SERVICES</h2>
   </div>
-  <div class="srv-inner" id="services">
-    <div class="srv-grid">
-      <div class="srv-card"><div class="srv-ico">🎬</div><p class="srv-title">Long-Form Editing</p><p class="srv-desc">YouTube videos, documentaries, interviews, vlogs. Full post-production from rough cut to final delivery.</p></div>
-      <div class="srv-card"><div class="srv-ico">⚡</div><p class="srv-title">Short Form / Reels</p><p class="srv-desc">Instagram Reels, YouTube Shorts, TikToks. Fast-paced, hook-driven edits built for every platform.</p></div>
-      <div class="srv-card"><div class="srv-ico">🎨</div><p class="srv-title">Motion Graphics</p><p class="srv-desc">Titles, lower thirds, animated logos, and visual effects to elevate your content.</p></div>
-      <div class="srv-card"><div class="srv-ico">🤖</div><p class="srv-title">AI-Assisted Workflows</p><p class="srv-desc">Faster delivery and smarter edits using modern AI tools integrated into the post-production pipeline.</p></div>
+  <div class="srv-grid reveal" id="services">
+    <div class="srv-card">
+      <span class="srv-ico">🎬</span>
+      <p class="srv-title">Long-Form Editing</p>
+      <p class="srv-desc">YouTube videos, documentaries, interviews, vlogs. Full post-production from rough cut to final delivery.</p>
+    </div>
+    <div class="srv-card">
+      <span class="srv-ico">⚡</span>
+      <p class="srv-title">Short Form / Reels</p>
+      <p class="srv-desc">Instagram Reels, YouTube Shorts, TikToks. Fast-paced, hook-driven edits built for every platform.</p>
+    </div>
+    <div class="srv-card">
+      <span class="srv-ico">🎨</span>
+      <p class="srv-title">Motion Graphics</p>
+      <p class="srv-desc">Titles, lower thirds, animated logos, and visual effects to elevate your content.</p>
+    </div>
+    <div class="srv-card">
+      <span class="srv-ico">🤖</span>
+      <p class="srv-title">AI-Assisted Workflows</p>
+      <p class="srv-desc">Faster delivery and smarter edits using modern AI tools integrated into the post-production pipeline.</p>
     </div>
   </div>
 </div>
 
-<hr class="divider">
+<hr class="divider-red">
 
-<!-- CONTACT -->
+<!-- ─── CONTACT ───────────────────────────────────────── -->
 <div class="sw">
-  <div class="sec-head" style="text-align:center;" id="contact">
+  <div class="sec-head reveal" style="text-align:center;" id="contact">
+    <span class="sec-num" style="right:auto;left:5vw;">04</span>
     <div class="sec-label" style="justify-content:center;">Get In Touch</div>
-    <h2>LET'S <span>WORK</span></h2>
+    <h2>LET'S <span class="accent">WORK</span></h2>
   </div>
-  <div class="contact-inner">
-    <p class="contact-intro">Currently seeking Full-time Video Editor opportunities with creators, agencies, and media companies.</p>
+  <div class="contact-wrap reveal">
+    <p class="contact-intro">Currently seeking full-time Video Editor opportunities with creators, agencies, and media companies.</p>
     <div class="contact-pills">
       <a class="contact-pill primary" href="https://mail.google.com/mail/?view=cm&fs=1&to=ashutosh.omane@gmail.com" target="_blank">✉ ashutosh.omane@gmail.com</a>
       <a class="contact-pill" href="https://wa.me/917030480523" target="_blank">💬 +91 70304 80523</a>
@@ -551,10 +855,95 @@ footer {
   </div>
 </div>
 
+<!-- ─── FOOTER ─────────────────────────────────────────── -->
 <footer>
   <div class="footer-brand">Ashutosh Omane<span>.</span></div>
   <div class="footer-note">© 2026 — Video Editor · Pune, Pimpri-Chinchwad, Maharashtra</div>
 </footer>
 
+<script>
+/* ── Split text hero ──────────────────────────────────── */
+const NAME  = 'ASHUTOSH';
+const GHOST = 'OMANE';
+const nameEl  = document.getElementById('heroName');
+const ghostEl = document.getElementById('heroGhost');
+
+NAME.split('').forEach((ch, i) => {
+  const s = document.createElement('span');
+  s.className = 'letter';
+  s.textContent = ch;
+  s.style.animationDelay = `${0.35 + i * 0.055}s`;
+  nameEl.appendChild(s);
+});
+GHOST.split('').forEach((ch, i) => {
+  const s = document.createElement('span');
+  s.className = 'letter';
+  s.textContent = ch;
+  s.style.animationDelay = `${0.55 + i * 0.055}s`;
+  ghostEl.appendChild(s);
+});
+
+/* ── Spotlight follow ─────────────────────────────────── */
+const spotlight = document.getElementById('spotlight');
+let spX = window.innerWidth / 2, spY = window.innerHeight / 2;
+let rX = spX, rY = spY;
+window.addEventListener('mousemove', e => { spX = e.clientX; spY = e.clientY; }, { passive: true });
+(function animateSpot() {
+  rX += (spX - rX) * 0.07;
+  rY += (spY - rY) * 0.07;
+  spotlight.style.background = `radial-gradient(circle 420px at ${rX}px ${rY}px, rgba(224,32,32,0.032) 0%, transparent 70%)`;
+  requestAnimationFrame(animateSpot);
+})();
+
+/* ── Marquee ──────────────────────────────────────────── */
+const items = [
+  'Long Form Editing','Short Form Reels','Motion Design',
+  'AI Workflows','Documentary Style','YouTube Content',
+  'Visual Storytelling','Available for Hire','Pune · India',
+  'Premiere Pro','After Effects'
+];
+const track = document.getElementById('marqueeTrack');
+[...items, ...items].forEach((text, i) => {
+  const sp = document.createElement('span');
+  sp.className = 'marquee-item';
+  sp.textContent = text;
+  track.appendChild(sp);
+  const dot = document.createElement('span');
+  dot.className = 'marquee-sep';
+  dot.textContent = '◆';
+  track.appendChild(dot);
+});
+
+/* ── Scroll reveal ────────────────────────────────────── */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.07, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach((el, i) => {
+  el.style.transitionDelay = `${(i % 3) * 80}ms`;
+  obs.observe(el);
+});
+
+/* ── Nav shrink on scroll ─────────────────────────────── */
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+/* ── Mobile menu ──────────────────────────────────────── */
+const menu = document.getElementById('mobileMenu');
+const ham  = document.getElementById('hamburger');
+function toggleMobileMenu() {
+  menu.classList.toggle('open');
+  ham.classList.toggle('open');
+  document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+}
+function closeMobileMenu() {
+  menu.classList.remove('open');
+  ham.classList.remove('open');
+  document.body.style.overflow = '';
+}
+</script>
 </body>
 </html>
