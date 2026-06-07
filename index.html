@@ -617,10 +617,8 @@ footer {
   .mini-btn { text-align: center; }
 }
 
-#longform,
-#shortform{
-  scroll-margin-top:80px;
-}
+/* anchor offset handled by JS, remove CSS scroll-margin */
+#longform, #shortform { scroll-margin-top: 0; }
 
 </style>
 </head>
@@ -661,8 +659,8 @@ footer {
   </h1>
   <p class="hero-desc">Crafting cinematic stories through long-form storytelling and short-form content that commands attention.</p>
   <div class="badge-row">
-    <a href="#longform" class="badge">↓ Long Form</a>
-    <a href="#shortform" class="badge">↓ Short Form</a>
+    <a href="#longform" class="badge" onclick="scrollToSection('longform', event)">↓ Long Form</a>
+    <a href="#shortform" class="badge" onclick="scrollToSection('shortform', event)">↓ Short Form</a>
   </div>
   <div class="cta-row">
     <a href="#work" class="btn btn-r">View My Work</a>
@@ -747,7 +745,7 @@ footer {
     </div>
     <div class="proj-card">
       <div class="proj-thumb">
-        <iframe src="https://www.youtube-nocookie.com/embed/XzVp9AQFETc" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube-nocookie.com/embed/SOH-VBAbvw8" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
       </div>
       <div class="proj-body">
         <p class="proj-num">05</p>
@@ -870,6 +868,16 @@ footer {
 </footer>
 
 <script>
+/* ── Precise section scroll ───────────────────────────── */
+function scrollToSection(id, e) {
+  e.preventDefault();
+  const el = document.getElementById(id);
+  if (!el) return;
+  const navH = document.getElementById('mainNav').offsetHeight;
+  const top = el.getBoundingClientRect().top + window.scrollY - navH - 12;
+  window.scrollTo({ top, behavior: 'smooth' });
+}
+
 /* ── Split text hero ──────────────────────────────────── */
 const NAME  = 'ASHUTOSH';
 const GHOST = 'OMANE';
