@@ -617,8 +617,10 @@ footer {
   .mini-btn { text-align: center; }
 }
 
-/* anchor offset handled by JS, remove CSS scroll-margin */
-#longform, #shortform { scroll-margin-top: 0; }
+#longform,
+#shortform {
+  scroll-margin-top: 70px;
+}
 
 </style>
 </head>
@@ -659,8 +661,8 @@ footer {
   </h1>
   <p class="hero-desc">Crafting cinematic stories through long-form storytelling and short-form content that commands attention.</p>
   <div class="badge-row">
-    <a href="#longform" class="badge" onclick="scrollToSection('longform', event)">↓ Long Form</a>
-    <a href="#shortform" class="badge" onclick="scrollToSection('shortform', event)">↓ Short Form</a>
+    <a href="#longform" class="badge" onclick="scrollToSection('longform',event)">↓ Long Form</a>
+    <a href="#shortform" class="badge" onclick="scrollToSection('shortform',event)">↓ Short Form</a>
   </div>
   <div class="cta-row">
     <a href="#work" class="btn btn-r">View My Work</a>
@@ -685,8 +687,8 @@ footer {
     <p class="sec-sub">A selection of long-form and short-form projects.</p>
   </div>
 
-  <p class="work-sublabel reveal">Long Form</p>
-  <div class="proj-grid reveal" id="longform">
+  <p class="work-sublabel reveal" id="longform">Long Form</p>
+  <div class="proj-grid reveal">
     <div class="proj-card">
       <div class="proj-thumb">
         <iframe src="https://www.youtube-nocookie.com/embed/dAMVQ7V5I7E" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
@@ -730,8 +732,8 @@ footer {
     </div>
   </div>
 
-  <p class="work-sublabel reveal" style="margin-top:4rem;">Short Form</p>
-  <div class="proj-grid reveal" id="shortform">
+  <p class="work-sublabel reveal" id="shortform" style="margin-top:4rem;">Short Form</p>
+  <div class="proj-grid reveal">
     <div class="proj-card">
       <div class="proj-thumb">
         <iframe src="https://www.youtube-nocookie.com/embed/6tYzQPLRQNM" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
@@ -745,7 +747,7 @@ footer {
     </div>
     <div class="proj-card">
       <div class="proj-thumb">
-        <iframe src="https://www.youtube-nocookie.com/embed/SOH-VBAbvw8" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube-nocookie.com/embed/XzVp9AQFETc" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
       </div>
       <div class="proj-body">
         <p class="proj-num">05</p>
@@ -868,13 +870,14 @@ footer {
 </footer>
 
 <script>
-/* ── Precise section scroll ───────────────────────────── */
+/* ── Precise badge scroll ─────────────────────────────── */
 function scrollToSection(id, e) {
   e.preventDefault();
   const el = document.getElementById(id);
   if (!el) return;
   const navH = document.getElementById('mainNav').offsetHeight;
-  const top = el.getBoundingClientRect().top + window.scrollY - navH - 12;
+  // scroll so the sublabel sits right under the nav with a small gap
+  const top = el.getBoundingClientRect().top + window.scrollY - navH - 8;
   window.scrollTo({ top, behavior: 'smooth' });
 }
 
