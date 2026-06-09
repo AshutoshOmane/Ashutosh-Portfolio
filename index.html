@@ -783,12 +783,13 @@ function toggleMobileMenu(){menu.classList.toggle('open');ham.classList.toggle('
 function closeMobileMenu(){menu.classList.remove('open');ham.classList.remove('open');document.body.style.overflow='';}
 
 /* ── Photo fallback ───────────────────────────────────── */
-window.addEventListener('load',()=>{
-  const img=document.getElementById('aboutPhoto');
-  if(img&&(img.src.includes('YOUR_PHOTO')||!img.complete||img.naturalWidth===0)){
-    img.style.display='none';
-    document.getElementById('photoPlaceholder').style.display='flex';
-  }
+window.addEventListener('load', () => {
+  const img = document.getElementById('aboutPhoto');
+
+  img.onerror = () => {
+    img.style.display = 'none';
+    document.getElementById('photoPlaceholder').style.display = 'flex';
+  };
 });
 </script>
 </body>
