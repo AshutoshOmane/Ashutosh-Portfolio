@@ -4,658 +4,320 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ashutosh Omane — Video Editor & Motion Designer</title>
-
-<!-- ─── SEO ──────────────────────────────────────────── -->
-<meta name="description" content="Ashutosh Omane — Video Editor & Motion Designer based in Pune, India. Specialising in long-form storytelling, short-form content, and motion graphics.">
+<meta name="description" content="Ashutosh Omane — Video Editor & Motion Designer based in Pune, India.">
 <meta name="author" content="Ashutosh Omane">
-<meta name="keywords" content="video editor, motion designer, YouTube editor, short form, long form, Pune, India, Premiere Pro, After Effects">
-
-<!-- ─── OPEN GRAPH ────────────────────────────────────── -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Ashutosh Omane — Video Editor & Motion Designer">
-<meta property="og:description" content="Crafting cinematic stories through long-form storytelling and short-form content that commands attention.">
-<meta property="og:image" content="https://og-image-placeholder.vercel.app/Ashutosh%20Omane.png">
+<meta property="og:description" content="Video Editor & Motion Designer. Long-form storytelling, short-form content, motion graphics.">
 <meta property="og:url" content="https://ashutoshomane.com">
-<meta property="og:site_name" content="Ashutosh Omane Portfolio">
-
-<!-- ─── TWITTER CARD ──────────────────────────────────── -->
+<meta property="og:site_name" content="Ashutosh Omane">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Ashutosh Omane — Video Editor & Motion Designer">
-<meta name="twitter:description" content="Crafting cinematic stories through long-form storytelling and short-form content.">
-<meta name="twitter:image" content="https://og-image-placeholder.vercel.app/Ashutosh%20Omane.png">
-
-<!-- ─── FAVICON (SVG inline) ─────────────────────────── -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23070707'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-weight='700' font-size='20' fill='%23e02020'>A</text></svg>">
-
-<!-- ─── FONTS ─────────────────────────────────────────── -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23070707'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-weight='700' font-size='20' fill='%23cc1f1f'>A</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
-
 <style>
-/* ─── TOKENS ─────────────────────────────────────────── */
 :root {
-  --bg:      #070707;
-  --bg2:     #0d0d0d;
-  --card:    #0f0f0f;
-  --card2:   #151515;
-  --red:     #e02020;
-  --red2:    #ff3333;
-  --red-dim: rgba(224,32,32,0.1);
-  --white:   #f0f0f0;
-  --text:    #aaa;
-  --muted:   #505050;
-  --line:    rgba(255,255,255,0.07);
-  --line2:   rgba(255,255,255,0.035);
+  --bg:#070707; --bg2:#0c0c0c; --bg-tint:rgba(160,18,18,0.018);
+  --card:#0f0f0f; --card2:#141414;
+  --red:#cc1f1f; --red2:#e83232; --red-dim:rgba(204,31,31,0.12);
+  --white:#f0f0f0; --text:#b8b8b8; --muted:#747474;
+  --line:rgba(255,255,255,0.07); --line2:rgba(255,255,255,0.04);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.8;overflow-x:hidden;}
+
+/* GRAIN */
+body::before{content:'';position:fixed;inset:0;z-index:999;pointer-events:none;opacity:0.038;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:180px;animation:grainShift .5s steps(1) infinite;}
+@keyframes grainShift{0%{background-position:0 0}20%{background-position:-30px -15px}40%{background-position:20px 25px}60%{background-position:-10px 30px}80%{background-position:35px -20px}100%{background-position:5px 10px}}
+
+/* SPOTLIGHT */
+#spotlight{position:fixed;inset:0;z-index:1;pointer-events:none;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;align-items:center;
+  padding:1.1rem 5vw;background:rgba(7,7,7,0.92);backdrop-filter:blur(24px) saturate(1.5);
+  border-bottom:1px solid var(--line2);transition:padding .35s ease;}
+nav.scrolled{padding:.7rem 5vw;}
+.nav-brand{font-family:'Bebas Neue',sans-serif;font-size:1.25rem;letter-spacing:.18em;color:var(--white);text-decoration:none;}
+.nav-brand span{color:var(--red);}
+.nav-links{display:flex;gap:2.6rem;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;transition:color .2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .25s;}
+.nav-links a:hover{color:var(--white);}
+.nav-links a:hover::after{transform:scaleX(1);}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.nav-hamburger span{display:block;width:22px;height:1px;background:var(--white);transition:all .25s;}
+.nav-hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4px,4px);}
+.nav-hamburger.open span:nth-child(2){opacity:0;}
+.nav-hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px);}
+.nav-mobile-menu{display:none;position:fixed;inset:0;z-index:499;background:rgba(7,7,7,0.98);flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;}
+.nav-mobile-menu.open{display:flex;}
+.nav-mobile-menu a{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:.1em;color:var(--white);text-decoration:none;transition:color .2s;}
+.nav-mobile-menu a:hover{color:var(--red);}
+
+/* HERO */
+#hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+  padding:9rem 6vw 6rem;position:relative;z-index:2;}
+#hero::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:repeating-linear-gradient(to bottom,transparent 0,transparent 3px,rgba(0,0,0,.07) 3px,rgba(0,0,0,.07) 4px);}
+#hero::after{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 60% 65% at 50% 46%,rgba(204,31,31,.08) 0%,transparent 68%),
+             radial-gradient(ellipse 140% 60% at 50% 50%,transparent 55%,rgba(0,0,0,.55) 100%);}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--red);margin-bottom:2rem;
+  display:flex;align-items:center;justify-content:center;gap:1rem;opacity:0;animation:fadeUp .7s .1s forwards;position:relative;z-index:2;}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';display:block;width:28px;height:1px;background:var(--red);opacity:.55;}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(5rem,13vw,11rem);line-height:1;letter-spacing:.03em;position:relative;z-index:2;}
+.h1-main{display:block;color:#f0f0f0;animation:subtleFlicker 4s infinite;}
+.h1-ghost{display:block;color:transparent;-webkit-text-stroke:1px rgba(240,240,240,.22);transition:-webkit-text-stroke-color .4s;}
+h1:hover .h1-ghost{-webkit-text-stroke-color:rgba(240,240,240,.42);}
+.h1-main .letter,.h1-ghost .letter{display:inline-block;opacity:0;transform:translateY(30px) rotate(3deg);animation:letterDrop .5s ease forwards;}
+@keyframes letterDrop{to{opacity:1;transform:none;}}
+.hero-desc{font-size:1rem;font-weight:300;color:var(--muted);max-width:500px;margin:2.5rem auto;line-height:1.95;opacity:0;animation:fadeUp .8s .9s forwards;position:relative;z-index:2;}
+.badge-row{display:flex;justify-content:center;gap:.7rem;flex-wrap:wrap;margin-bottom:2.8rem;opacity:0;animation:fadeUp .8s 1.05s forwards;position:relative;z-index:2;}
+.badge{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;padding:.5rem 1.1rem;
+  border:1px solid var(--red);color:var(--red);background:var(--red-dim);text-decoration:none;transition:background .2s,color .2s,transform .2s;display:inline-block;}
+.badge:hover{background:var(--red);color:var(--white);transform:translateY(-2px);}
+.cta-row{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;opacity:0;animation:fadeUp .8s 1.18s forwards;position:relative;z-index:2;}
+.btn{font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;padding:1rem 2.5rem;text-decoration:none;transition:all .22s;display:inline-block;}
+.btn-r{background:var(--red);color:var(--white);border:1px solid var(--red);}
+.btn-r:hover{background:var(--red2);border-color:var(--red2);transform:translateY(-2px);}
+.btn-o{background:transparent;color:var(--muted);border:1px solid var(--line);}
+.btn-o:hover{color:var(--white);border-color:rgba(255,255,255,.2);transform:translateY(-2px);}
+.scroll-hint{position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;
+  font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);opacity:0;animation:fadeIn 1s 1.6s forwards;z-index:2;}
+.scroll-hint-line{display:block;width:1px;height:38px;background:linear-gradient(to bottom,var(--red),transparent);animation:pulseLine 1.9s ease-in-out infinite;}
+
+/* MARQUEE */
+.marquee-wrap{overflow:hidden;border-top:1px solid var(--line2);border-bottom:1px solid var(--line2);background:var(--bg2);padding:.85rem 0;position:relative;z-index:2;user-select:none;}
+.marquee-track{display:flex;animation:marquee 30s linear infinite;width:max-content;}
+.marquee-wrap:hover .marquee-track{animation-play-state:paused;}
+.marquee-item{font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);padding:0 2.2rem;white-space:nowrap;transition:color .2s;}
+.marquee-item:hover{color:var(--white);}
+.marquee-sep{color:var(--red);align-self:center;font-size:.35rem;padding:0 .3rem;line-height:1;opacity:.7;}
+
+/* SECTION SHELL */
+.sw{position:relative;z-index:2;}
+.sw.tinted{background:var(--bg-tint);}
+.sec-head{padding:5rem 5vw 2.5rem;position:relative;}
+.sec-num{display:none;position:absolute;top:2rem;right:5vw;font-family:'Bebas Neue',sans-serif;font-size:clamp(6rem,14vw,12rem);
+  color:rgba(255,255,255,.018);letter-spacing:.05em;line-height:1;pointer-events:none;user-select:none;}
+.sec-label{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--red);margin-bottom:.9rem;display:flex;align-items:center;gap:.9rem;}
+.sec-label::before{content:'';display:block;width:20px;height:1px;background:var(--red);opacity:.6;}
+h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,5vw,3.8rem);letter-spacing:.04em;color:var(--white);line-height:.95;}
+h2 .accent{color:var(--red);}
+.sec-sub{font-size:.88rem;color:var(--muted);margin-top:.75rem;max-width:400px;line-height:1.7;}
+.divider-red{display:block;width:100%;height:1px;background:linear-gradient(90deg,transparent 0%,var(--red) 15%,var(--red) 85%,transparent 100%);opacity:.45;position:relative;z-index:2;border:none;margin:0;}
+
+/* WORK SUBLABEL */
+.work-sublabel{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);padding:0 5vw;margin:0 0 1rem;display:flex;align-items:center;gap:.7rem;}
+.work-sublabel::before{content:'';display:block;width:14px;height:1px;background:var(--muted);opacity:.4;}
+
+/* PROJECT CARDS */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));border-left:1px solid var(--line2);border-top:1px solid var(--line2);margin:0 5vw;}
+.proj-card{background:var(--card);border-right:1px solid var(--line2);border-bottom:1px solid var(--line2);overflow:hidden;display:flex;flex-direction:column;position:relative;transition:background .3s,box-shadow .3s;}
+.proj-card:hover{background:var(--card2);box-shadow:0 0 40px rgba(204,31,31,.06),inset 0 0 0 1px rgba(204,31,31,.1);}
+.proj-card:active{background:var(--card2);}
+.proj-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:2px;background:var(--red);transform:scaleY(0);transform-origin:top;transition:transform .35s;z-index:3;}
+.proj-card:hover::before{transform:scaleY(1);}
+.proj-thumb{width:100%;aspect-ratio:16/9;position:relative;overflow:hidden;background:#080808;}
+.proj-thumb iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
+.proj-body{padding:1.3rem 1.5rem 1.5rem;flex:1;display:flex;flex-direction:column;border-top:1px solid var(--line2);}
+.proj-num{font-family:'Bebas Neue',sans-serif;font-size:.75rem;letter-spacing:.14em;color:var(--red);margin-bottom:.4rem;opacity:.65;}
+.proj-title{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.05em;color:var(--white);line-height:1;margin-bottom:.3rem;}
+.proj-type{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.75rem;}
+.proj-desc{font-size:.84rem;color:var(--muted);line-height:1.75;flex:1;}
+
+/* WRITE-UPS */
+.writeup-section{padding:0 5vw 3rem;}
+.writeup-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--line2);border:1px solid var(--line2);}
+.writeup-card{background:var(--card);padding:2rem 1.8rem;position:relative;transition:background .3s;}
+.writeup-card:hover{background:var(--card2);}
+.writeup-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .4s;}
+.writeup-card:hover::before{transform:scaleX(1);}
+.writeup-num{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.2em;color:var(--red);margin-bottom:.6rem;opacity:.7;}
+.writeup-title{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.05em;color:var(--white);margin-bottom:1rem;}
+.writeup-body{font-size:.88rem;color:var(--text);line-height:1.9;border-left:2px solid rgba(204,31,31,.3);padding-left:1rem;}
+
+/* ─── LIGHTBOX ─────────────────────────────────────────── */
+.lightbox-overlay{
+  position:fixed;inset:0;z-index:2000;
+  background:rgba(0,0,0,.95);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .3s ease;
+  padding:2rem;
+}
+.lightbox-overlay.open{opacity:1;pointer-events:all;}
+.lightbox-img{
+  max-width:92vw;max-height:88vh;
+  object-fit:contain;
+  box-shadow:0 0 80px rgba(204,31,31,.15);
+  transform:scale(.95);transition:transform .3s ease;
+}
+.lightbox-overlay.open .lightbox-img{transform:scale(1);}
+.lightbox-close{
+  position:absolute;top:1.5rem;right:1.5rem;
+  font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);cursor:pointer;background:none;border:1px solid var(--line);padding:.5rem 1rem;
+  transition:color .2s,border-color .2s;
+}
+.lightbox-close:hover{color:var(--white);border-color:rgba(255,255,255,.2);}
+.lightbox-counter{
+  position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);
+  font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.2em;color:var(--muted);
 }
 
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+/* FRAMES GALLERY — 16:9 for Photoshop frames */
+.frames-sublabel{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);padding:0 5vw;margin:2rem 0 1rem;display:flex;align-items:center;gap:.7rem;}
+.frames-sublabel::before{content:'';display:block;width:14px;height:1px;background:var(--muted);opacity:.4;}
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 15px;
-  line-height: 1.8;
-  overflow-x: hidden;
-}
+.frames-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--line2);border:1px solid var(--line2);margin:0 5vw 4rem;}
+/* 16:9 for Photoshop frames */
+.frame-card{background:var(--card);overflow:hidden;position:relative;aspect-ratio:16/9;transition:transform .3s,box-shadow .3s;cursor:pointer;}
+.frame-card:hover{transform:scale(1.02);box-shadow:0 0 30px rgba(204,31,31,.12);z-index:2;}
+.frame-card img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.9);transition:filter .3s;}
+.frame-card:hover img{filter:brightness(1);}
+/* placeholder when no image loaded */
+.frame-card .frame-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;position:absolute;inset:0;background:var(--card);}
+.frame-card .frame-placeholder span{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);opacity:.45;}
+.frame-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.72) 0%,transparent 55%);opacity:0;transition:opacity .3s;display:flex;align-items:flex-end;padding:1rem;}
+.frame-card:hover .frame-overlay{opacity:1;}
+.frame-label{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--white);}
 
-/* ─── FILM GRAIN (animated) ──────────────────────────── */
-body::before {
-  content: '';
-  position: fixed; inset: 0; z-index: 999; pointer-events: none;
-  opacity: 0.04;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 180px 180px;
-  animation: grainShift 0.5s steps(1) infinite;
-}
-@keyframes grainShift {
-  0%   { background-position:   0px   0px; }
-  20%  { background-position: -30px -15px; }
-  40%  { background-position:  20px  25px; }
-  60%  { background-position: -10px  30px; }
-  80%  { background-position:  35px -20px; }
-  100% { background-position:   5px  10px; }
-}
+/* Motion graphics — 9:16 portrait for vertical clips */
+.mg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--line2);border:1px solid var(--line2);margin:0 5vw 4rem;}
+.mg-card{background:var(--card);overflow:hidden;position:relative;aspect-ratio:16/9;transition:transform .3s,box-shadow .3s;cursor:pointer;}
+.mg-card:hover{transform:scale(1.02);box-shadow:0 0 30px rgba(204,31,31,.12);z-index:2;}
+.mg-card img,.mg-card video{width:100%;height:100%;object-fit:cover;display:block;}
+.mg-card .frame-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;position:absolute;inset:0;background:var(--card);}
+.mg-card .frame-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.72) 0%,transparent 55%);opacity:0;transition:opacity .3s;display:flex;align-items:flex-end;padding:1rem;}
+.mg-card:hover .frame-overlay{opacity:1;}
 
-/* ─── HERO SCANLINES ─────────────────────────────────── */
-#hero::before {
-  content: '';
-  position: absolute; inset: 0; z-index: 0; pointer-events: none;
-  background: repeating-linear-gradient(
-    to bottom,
-    transparent 0px,
-    transparent 3px,
-    rgba(0,0,0,0.08) 3px,
-    rgba(0,0,0,0.08) 4px
-  );
-}
+/* ABOUT */
+.about-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:5rem;align-items:start;padding:0 5vw 5.5rem;}
+.about-bio{font-size:.97rem;font-weight:300;color:var(--text);line-height:1.95;}
+.about-bio p{margin-bottom:1.2rem;}
+.about-bio strong{color:var(--white);font-weight:500;}
+.about-bio p:first-child{font-size:1.06rem;}
+.about-photo{width:100%;aspect-ratio:3/4;background:var(--card);border:1px solid var(--line);overflow:hidden;position:relative;}
+.about-photo img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(15%);}
+.about-photo-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8rem;color:var(--muted);position:absolute;inset:0;}
+.about-photo-placeholder span{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;opacity:.4;}
+.about-photo::after{content:'';position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(to top,var(--bg),transparent);pointer-events:none;}
+.photo-caption{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:.7rem;text-align:center;}
 
-/* ─── HERO VIGNETTE ──────────────────────────────────── */
-#hero::after {
-  content: '';
-  position: absolute; inset: 0; z-index: 0; pointer-events: none;
-  background:
-    radial-gradient(ellipse 60% 65% at 50% 46%, rgba(224,32,32,0.08) 0%, transparent 68%),
-    radial-gradient(ellipse 100% 40% at 50% 100%, rgba(224,32,32,0.04) 0%, transparent 70%),
-    radial-gradient(ellipse 140% 60% at 50% 50%, transparent 55%, rgba(0,0,0,0.6) 100%);
-}
+/* SKILLS */
+.sw-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line2);border:1px solid rgba(255,255,255,.07);outline:1px solid rgba(204,31,31,.1);outline-offset:6px;max-width:520px;}
+.sw-card{background:var(--card);padding:1.3rem 1.1rem;display:flex;flex-direction:column;gap:.3rem;transition:background .25s;position:relative;overflow:hidden;}
+.sw-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+.sw-card:hover{background:var(--card2);}
+.sw-card:hover::after{transform:scaleX(1);}
+.sw-ico{margin-bottom:.2rem;}
+.sw-name{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.07em;color:var(--white);}
+.sw-role{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
 
-/* ─── SPOTLIGHT (mouse follow) ───────────────────────── */
-#spotlight {
-  position: fixed; inset: 0; z-index: 1; pointer-events: none;
-  background: radial-gradient(circle 420px at 50% 50%, rgba(224,32,32,0.035) 0%, transparent 70%);
-  transition: background 0.08s linear;
-}
+/* SERVICES */
+.srv-grid{display:grid;grid-template-columns:repeat(4,1fr);border-left:1px solid var(--line2);border-top:1px solid var(--line2);margin:0 5vw 5rem;}
+.srv-card{background:var(--card);padding:2rem 1.6rem 1.8rem;border-right:1px solid var(--line2);border-bottom:1px solid var(--line2);transition:background .3s,box-shadow .3s;position:relative;overflow:hidden;}
+.srv-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .35s;}
+.srv-card:hover{background:var(--card2);box-shadow:0 0 30px rgba(204,31,31,.05);}
+.srv-card:hover::before{transform:scaleX(1);}
+.srv-ico{margin-bottom:1.1rem;display:block;}
+.srv-title{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:.07em;color:var(--white);margin-bottom:.55rem;}
+.srv-desc{font-size:.84rem;color:var(--muted);line-height:1.75;}
 
-/* ─── NAV ────────────────────────────────────────────── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 1.1rem 5vw;
-  background: rgba(7,7,7,0.9);
-  backdrop-filter: blur(24px) saturate(1.5);
-  border-bottom: 1px solid var(--line2);
-  transition: padding .35s ease;
-}
-nav.scrolled { padding: 0.7rem 5vw; }
+/* FOOTER */
+footer{position:relative;z-index:2;border-top:1px solid var(--line2);padding:1.4rem 5vw;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.8rem;}
+.footer-brand{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.13em;color:var(--white);}
+.footer-brand span{color:var(--red);}
+.footer-note{font-family:'DM Mono',monospace;font-size:.57rem;color:rgba(80,80,80,.55);letter-spacing:.08em;}
 
-.nav-brand {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.25rem; letter-spacing: 0.18em;
-  color: var(--white); text-decoration: none;
-  flex-shrink: 0;
-}
-.nav-brand span { color: var(--red); }
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.visible{opacity:1;transform:none;}
 
-.nav-links { display: flex; gap: 2.6rem; list-style: none; }
-.nav-links a {
-  color: var(--muted); text-decoration: none;
-  font-family: 'DM Mono', monospace;
-  font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase;
-  transition: color .2s; position: relative;
-}
-.nav-links a::after {
-  content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
-  height: 1px; background: var(--red);
-  transform: scaleX(0); transform-origin: left;
-  transition: transform .25s ease;
-}
-.nav-links a:hover { color: var(--white); }
-.nav-links a:hover::after { transform: scaleX(1); }
+/* KEYFRAMES */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes pulseLine{0%,100%{opacity:.35;transform:scaleY(1);}50%{opacity:1;transform:scaleY(1.08);}}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
-.nav-hire {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
-  padding: 0.55rem 1.4rem; text-decoration: none;
-  background: var(--red); color: var(--white);
-  border: 1px solid var(--red);
-  transition: all .2s; flex-shrink: 0;
-}
-.nav-hire:hover { background: var(--red2); border-color: var(--red2); }
-
-/* Mobile hamburger */
-.nav-hamburger {
-  display: none;
-  flex-direction: column; gap: 5px; cursor: pointer;
-  padding: 4px;
-}
-.nav-hamburger span {
-  display: block; width: 22px; height: 1px; background: var(--white);
-  transition: all .25s;
-}
-.nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
-.nav-hamburger.open span:nth-child(2) { opacity: 0; }
-.nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
-
-.nav-mobile-menu {
-  display: none;
-  position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 499;
-  background: rgba(7,7,7,0.97);
-  flex-direction: column; align-items: center; justify-content: center;
-  gap: 2.5rem;
-}
-.nav-mobile-menu.open { display: flex; }
-.nav-mobile-menu a {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 2.5rem; letter-spacing: 0.1em;
-  color: var(--white); text-decoration: none;
-  transition: color .2s;
-}
-.nav-mobile-menu a:hover { color: var(--red); }
-.nav-mobile-menu .mob-hire {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase;
-  padding: 0.8rem 2.5rem; margin-top: 0.5rem;
-  background: var(--red); color: var(--white);
-  border: 1px solid var(--red);
+@keyframes subtleFlicker{
+  0%,18%,20%,62%,64%,100%{opacity:1;}
+  19%,63%{opacity:.35;}
 }
 
-/* ─── HERO ───────────────────────────────────────────── */
-#hero {
-  min-height: 100svh;
-  display: flex; flex-direction: column;
-  justify-content: center; align-items: center; text-align: center;
-  padding: 9rem 6vw 6rem;
-  position: relative; z-index: 1;
-}
 
-.hero-eyebrow {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase;
-  color: var(--red); margin-bottom: 2rem;
-  display: flex; align-items: center; justify-content: center; gap: 1rem;
-  opacity: 0; animation: fadeUp .7s .1s forwards;
-}
-.hero-eyebrow::before, .hero-eyebrow::after {
-  content: ''; display: block; width: 28px; height: 1px; background: var(--red); opacity: .55;
-}
+/* SCROLL MARGIN */
+#longform,#shortform{scroll-margin-top:70px;}
 
-/* ─── SPLIT TEXT h1 ──────────────────────────────────── */
-h1 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(5rem, 13vw, 11rem);
-  line-height: 0.9; letter-spacing: 0.03em;
-  position: relative; z-index: 2;
+/* RESPONSIVE */
+@media(max-width:1100px){.srv-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:860px){
+  .about-inner{grid-template-columns:1fr;gap:3rem;}
+  .sec-num{display:none;}
+  .proj-grid{grid-template-columns:1fr;margin:0 4vw;}
+  .writeup-grid{grid-template-columns:1fr;}
+  .frames-grid{grid-template-columns:1fr 1fr;margin:0 4vw 1.5rem;}
+  .mg-grid{grid-template-columns:repeat(3,1fr);margin:0 4vw 3rem;}
+  .srv-grid{grid-template-columns:1fr 1fr;margin:0 4vw 4rem;}
+  .sec-head{padding:3.5rem 4vw 2rem;}
+  .work-sublabel,.frames-sublabel{padding:0 4vw;}
+  .writeup-section{padding:0 4vw 2rem;}
+  .about-inner{padding:0 4vw 4rem;}
+  .nav-links{display:none;}
+  .nav-hamburger{display:flex;}
 }
-/* gradient fill on main name */
-.h1-main {
-  display: block;
-  background: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
+@media(max-width:560px){
+  #hero{padding:8rem 5vw 5rem;}
+  .hero-eyebrow{font-size:.58rem;letter-spacing:.2em;}
+  .cta-row{flex-direction:column;align-items:center;}
+  .btn{width:100%;max-width:280px;text-align:center;}
+  .srv-grid{grid-template-columns:1fr;}
+  .frames-grid{grid-template-columns:1fr;}
+  .mg-grid{grid-template-columns:1fr 1fr;}
+  footer{flex-direction:column;text-align:center;gap:.5rem;}
 }
-.h1-ghost {
-  display: block;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(240,240,240,0.15);
-  transition: -webkit-text-stroke-color .4s;
-}
-h1:hover .h1-ghost { -webkit-text-stroke-color: rgba(240,240,240,0.32); }
-
-/* Individual letter spans for stagger */
-.h1-main .letter, .h1-ghost .letter {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(30px) rotate(3deg);
-  animation: letterDrop 0.5s ease forwards;
-}
-
-/* Fix invisible/blinking hero name */
-.h1-main .letter{
-  color:#fff;
-  background:inherit;
-  -webkit-background-clip:text;
-  background-clip:text;
-  -webkit-text-fill-color:transparent;
-  will-change:transform,opacity;
-}
-/* Glitch flash on ASHUTOSH */
-@keyframes glitchFlash {
-  0%   { text-shadow: none; }
-  10%  { text-shadow: 2px 0 0 rgba(224,32,32,0.8), -2px 0 0 rgba(0,200,255,0.5); }
-  20%  { text-shadow: none; }
-  30%  { text-shadow: -3px 0 0 rgba(224,32,32,0.6); }
-  40%  { text-shadow: none; }
-  100% { text-shadow: none; }
-}
-.h1-main { animation: glitchFlash 1.2s 0.9s ease forwards; }
-
-@keyframes letterDrop {
-  to { opacity: 1; transform: none; }
-}
-
-.hero-desc {
-  font-size: 1rem; font-weight: 300;
-  color: var(--muted); max-width: 500px;
-  margin: 2.5rem auto 2.5rem; line-height: 1.95;
-  opacity: 0; animation: fadeUp .8s .9s forwards;
-  position: relative; z-index: 2;
-}
-
-.badge-row {
-  display: flex; justify-content: center; gap: 0.7rem; flex-wrap: wrap;
-  margin-bottom: 2.8rem;
-  opacity: 0; animation: fadeUp .8s 1.05s forwards;
-  position: relative; z-index: 2;
-}
-.badge {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase;
-  padding: 0.5rem 1.1rem;
-  border: 1px solid var(--red); color: var(--red);
-  background: var(--red-dim); text-decoration: none;
-  transition: background .2s, color .2s, transform .2s;
-  display: inline-block;
-}
-.badge:hover { background: var(--red); color: var(--white); transform: translateY(-2px); }
-
-.cta-row {
-  display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;
-  opacity: 0; animation: fadeUp .8s 1.18s forwards;
-  position: relative; z-index: 2;
-}
-.btn {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
-  padding: 1rem 2.5rem; text-decoration: none;
-  transition: all .22s; display: inline-block;
-}
-.btn-r { background: var(--red); color: var(--white); border: 1px solid var(--red); }
-.btn-r:hover { background: var(--red2); border-color: var(--red2); transform: translateY(-2px); }
-.btn-o { background: transparent; color: var(--muted); border: 1px solid var(--line); }
-.btn-o:hover { color: var(--white); border-color: rgba(255,255,255,0.2); transform: translateY(-2px); }
-
-.scroll-hint {
-  position: absolute; bottom: 2.2rem; left: 50%; transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-  font-family: 'DM Mono', monospace; font-size: 0.52rem;
-  letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted);
-  opacity: 0; animation: fadeIn 1s 1.6s forwards; z-index: 2;
-}
-.scroll-hint-line {
-  display: block; width: 1px; height: 38px;
-  background: linear-gradient(to bottom, var(--red), transparent);
-  animation: pulseLine 1.9s ease-in-out infinite;
-}
-
-/* ─── MARQUEE ────────────────────────────────────────── */
-.marquee-wrap {
-  overflow: hidden;
-  border-top: 1px solid var(--line2);
-  border-bottom: 1px solid var(--line2);
-  background: var(--bg2);
-  padding: 0.85rem 0;
-  position: relative; z-index: 2;
-  user-select: none;
-}
-.marquee-track {
-  display: flex;
-  animation: marquee 30s linear infinite;
-  width: max-content;
-}
-.marquee-wrap:hover .marquee-track { animation-play-state: paused; }
-.marquee-item {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 0.9rem; letter-spacing: 0.22em; text-transform: uppercase;
-  color: var(--muted); padding: 0 2.2rem;
-  white-space: nowrap; transition: color .2s;
-}
-.marquee-item:hover { color: var(--white); }
-.marquee-sep {
-  color: var(--red); align-self: center;
-  font-size: 0.5rem; padding: 0; line-height: 1;
-}
-
-/* ─── SECTION SHELL ──────────────────────────────────── */
-.sw { position: relative; z-index: 2; }
-.sec-head { padding: 5rem 5vw 2.5rem; position: relative; }
-
-/* Big ghost section number */
-.sec-num {
-  display: none;
-}
-
-.sec-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
-  color: var(--red); margin-bottom: 0.9rem;
-  display: flex; align-items: center; gap: 0.9rem;
-}
-.sec-label::before { content:''; display:block; width:20px; height:1px; background:var(--red); opacity:.6; }
-
-h2 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2.2rem, 5vw, 3.8rem);
-  letter-spacing: 0.04em; color: var(--white); line-height: 0.95;
-}
-h2 .accent { color: var(--red); }
-.sec-sub { font-size: 0.88rem; color: var(--muted); margin-top: 0.75rem; max-width: 400px; line-height: 1.7; }
-
-/* ─── FULL-BLEED RED DIVIDER ─────────────────────────── */
-.divider-red {
-  display: block; width: 100%; height: 1px;
-  background: linear-gradient(90deg, transparent 0%, var(--red) 20%, var(--red) 80%, transparent 100%);
-  opacity: 0.25; position: relative; z-index: 2;
-  border: none; margin: 0;
-}
-
-/* ─── WORK ───────────────────────────────────────────── */
-.work-sublabel {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.8rem;
-  color: var(--white);
-  letter-spacing: 0.12em; letter-spacing: 0.26em; text-transform: uppercase;
-  color: var(--muted); padding: 0 5vw; margin: 0 0 1rem;
-  display: flex; align-items: center; gap: 0.7rem;
-}
-.work-sublabel::before {
-  content:''; display:block; width:14px; height:1px; background:var(--muted); opacity:.4;
-}
-
-.proj-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  border-left: 1px solid var(--line2);
-  border-top: 1px solid var(--line2);
-  margin: 0 5vw;
-}
-.proj-card {
-  background: var(--card);
-  border-right: 1px solid var(--line2);
-  border-bottom: 1px solid var(--line2);
-  overflow: hidden; display: flex; flex-direction: column;
-  position: relative;
-  transition: background .3s, box-shadow .3s;
-}
-.proj-card:hover {
-  background: var(--card2);
-  box-shadow: 0 0 40px rgba(224,32,32,0.06), inset 0 0 0 1px rgba(224,32,32,0.12);
-}
-.proj-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; bottom: 0; width: 2px;
-  background: var(--red);
-  transform: scaleY(0); transform-origin: top;
-  transition: transform .35s ease; z-index: 3;
-}
-.proj-card:hover::before { transform: scaleY(1); }
-
-.proj-thumb {
-  width: 100%; aspect-ratio: 16/9;
-  position: relative; overflow: hidden; background: #080808;
-}
-.proj-thumb iframe {
-  position: absolute; top: 0; left: 0;
-  width: 100%; height: 100%; border: none;
-}
-
-.proj-body {
-  padding: 1.3rem 1.5rem 1.5rem;
-  flex: 1; display: flex; flex-direction: column;
-  border-top: 1px solid var(--line2);
-}
-.proj-num {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 0.75rem; letter-spacing: 0.14em;
-  color: var(--red); margin-bottom: 0.4rem; opacity: .65;
-}
-.proj-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.5rem; letter-spacing: 0.05em;
-  color: var(--white); line-height: 1; margin-bottom: 0.3rem;
-}
-.proj-type {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--muted); margin-bottom: 0.75rem;
-}
-.proj-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.75; flex: 1; }
-
-/* ─── MINI CTA ───────────────────────────────────────── */
-.mini-cta {
-  margin: 2.5rem 5vw 8rem;
-  padding: 1.4rem 1.8rem;
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-left: 2px solid var(--red);
-  display: flex; align-items: center; justify-content: space-between;
-  flex-wrap: wrap; gap: 1rem;
-}
-.mini-cta-text { font-size: 0.9rem; color: var(--muted); }
-.mini-cta-text strong { color: var(--white); font-weight: 500; }
-.mini-btns { display: flex; gap: 0.7rem; flex-wrap: wrap; }
-.mini-btn {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase;
-  padding: 0.55rem 1.2rem; text-decoration: none;
-  color: var(--white); border: 1px solid var(--line);
-  background: transparent; transition: all .22s;
-}
-.mini-btn:hover { border-color: var(--red); color: var(--red); }
-
-/* ─── ABOUT ──────────────────────────────────────────── */
-.about-inner {
-  display: grid; grid-template-columns: 1.15fr 0.85fr;
-  gap: 6rem; align-items: start;
-  padding: 0 5vw 5.5rem;
-}
-.about-bio {
-  font-size: 0.97rem; font-weight: 300;
-  color: var(--text); line-height: 1.95;
-}
-.about-bio p { margin-bottom: 1.2rem; }
-.about-bio strong { color: var(--white); font-weight: 500; }
-.about-bio p:first-child { font-size: 1.06rem; }
-
-.sw-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
-  background: var(--line2); border: 1px solid var(--line2);
-}
-.sw-card {
-  background: var(--card); padding: 1.4rem 1.2rem;
-  display: flex; flex-direction: column; gap: 0.3rem;
-  transition: background .25s; position: relative; overflow: hidden;
-}
-.sw-card::after {
-  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
-  background: var(--red); transform: scaleX(0); transform-origin: left;
-  transition: transform .3s;
-}
-.sw-card:hover { background: var(--card2); }
-.sw-card:hover::after { transform: scaleX(1); }
-.sw-ico { font-size: 1.3rem; margin-bottom: 0.2rem; }
-.sw-name {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1rem; letter-spacing: 0.07em; color: var(--white);
-}
-.sw-role {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.55rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
-}
-
-/* ─── SERVICES ───────────────────────────────────────── */
-.srv-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  border-left: 1px solid var(--line2);
-  border-top: 1px solid var(--line2);
-  margin: 0 5vw 5rem;
-}
-.srv-card {
-  background: var(--card); padding: 2rem 1.6rem 1.8rem;
-  border-right: 1px solid var(--line2); border-bottom: 1px solid var(--line2);
-  transition: background .3s, box-shadow .3s; position: relative; overflow: hidden;
-}
-.srv-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  background: var(--red);
-  transform: scaleX(0); transform-origin: left; transition: transform .35s ease;
-}
-.srv-card:hover {
-  background: var(--card2);
-  box-shadow: 0 0 30px rgba(224,32,32,0.05);
-}
-.srv-card:hover::before { transform: scaleX(1); }
-.srv-ico { font-size: 1.5rem; margin-bottom: 1.1rem; display: block; transition: transform .3s; }
-.srv-card:hover .srv-ico { transform: scale(1.12); }
-.srv-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.15rem; letter-spacing: 0.07em; color: var(--white); margin-bottom: 0.55rem;
-}
-.srv-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.75; }
-
-/* ─── CONTACT ────────────────────────────────────────── */
-.contact-wrap {
-  padding: 0 5vw 7rem;
-  display: flex; flex-direction: column; align-items: center; text-align: center;
-}
-.contact-intro { font-size: 0.96rem; color: var(--muted); max-width: 400px; margin: 1rem 0 2.5rem; line-height: 1.8; }
-.contact-pills { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
-.contact-pill {
-  font-family: 'DM Mono', monospace; font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase;
-  padding: 0.9rem 1.8rem; text-decoration: none;
-  border: 1px solid var(--line); color: var(--muted);
-  display: flex; align-items: center; gap: 0.6rem; transition: all .22s;
-}
-.contact-pill:hover { color: var(--white); border-color: rgba(255,255,255,0.18); }
-.contact-pill.primary { border-color: var(--red); color: var(--red); }
-.contact-pill.primary:hover { background: var(--red); color: var(--white); }
-
-/* ─── FOOTER ─────────────────────────────────────────── */
-footer {
-  position: relative; z-index: 2;
-  border-top: 1px solid var(--line2);
-  padding: 1.4rem 5vw;
-  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem;
-}
-.footer-brand { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 0.13em; color: var(--white); }
-.footer-brand span { color: var(--red); }
-.footer-note { font-family: 'DM Mono', monospace; font-size: 0.57rem; color: rgba(80,80,80,0.55); letter-spacing: 0.08em; }
-
-/* ─── REVEAL ─────────────────────────────────────────── */
-.reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
-.reveal.visible { opacity: 1; transform: none; }
-
-/* ─── KEYFRAMES ──────────────────────────────────────── */
-@keyframes fadeUp  { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
-@keyframes fadeIn  { from { opacity:0; } to { opacity:1; } }
-@keyframes pulseLine {
-  0%,100% { opacity:.35; transform:scaleY(1); }
-  50%      { opacity:1;   transform:scaleY(1.08); }
-}
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-
-/* ─── RESPONSIVE ─────────────────────────────────────── */
-@media (max-width: 1024px) {
-  .srv-grid { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 768px) {
-  .nav-links, .nav-hire { display: none; }
-  .nav-hamburger { display: flex; }
-  .about-inner { grid-template-columns: 1fr; gap: 3rem; }
-  .sec-num { display: none; }
-  .proj-grid { grid-template-columns: 1fr; margin: 0 4vw; }
-  .srv-grid { margin: 0 4vw 4rem; }
-  .mini-cta { margin: 2rem 4vw 4rem; flex-direction: column; align-items: flex-start; }
-  .about-inner { padding: 0 4vw 4rem; }
-  .sec-head { padding: 3.5rem 4vw 2rem; }
-  .work-sublabel { padding: 0 4vw; }
-}
-@media (max-width: 480px) {
-  #hero { padding: 8rem 5vw 5rem; }
-  .hero-eyebrow { font-size: 0.58rem; letter-spacing: 0.2em; }
-  .badge-row { gap: 0.5rem; }
-  .cta-row { flex-direction: column; align-items: center; }
-  .btn { width: 100%; max-width: 280px; text-align: center; }
-  .srv-grid { grid-template-columns: 1fr; }
-  .contact-pills { flex-direction: column; align-items: center; }
-  .contact-pill { width: 100%; justify-content: center; max-width: 320px; }
-  footer { flex-direction: column; text-align: center; gap: 0.5rem; }
-  .mini-btns { flex-direction: column; width: 100%; }
-  .mini-btn { text-align: center; }
-}
-
-#longform,
-#shortform {
-  scroll-margin-top: 70px;
-}
-
 </style>
 </head>
 <body>
-
 <div id="spotlight"></div>
 
-<!-- ─── MOBILE MENU ────────────────────────────────────── -->
-<div class="nav-mobile-menu" id="mobileMenu">
-  <a href="#work"     onclick="closeMobileMenu()">Work</a>
-  <a href="#about"    onclick="closeMobileMenu()">About</a>
-  <a href="#services" onclick="closeMobileMenu()">Services</a>
-  <a href="#contact"  onclick="closeMobileMenu()">Contact</a>
-  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ashutosh.omane@gmail.com" target="_blank" class="mob-hire">Hire Me</a>
+<!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">✕ Close</button>
+  <img class="lightbox-img" id="lightboxImg" src="" alt="">
+  <div class="lightbox-counter" id="lightboxCounter"></div>
 </div>
 
-<!-- ─── NAV ───────────────────────────────────────────── -->
+<!-- MOBILE MENU -->
+<div class="nav-mobile-menu" id="mobileMenu">
+  <a href="#work"   onclick="closeMobileMenu()">Work</a>
+  <a href="#frames" onclick="closeMobileMenu()">Frames</a>
+  <a href="#about"  onclick="closeMobileMenu()">About</a>
+  <a href="#skills" onclick="closeMobileMenu()">Skills</a>
+</div>
+
+<!-- NAV -->
 <nav id="mainNav">
   <a class="nav-brand" href="#">Ashutosh<span>.</span></a>
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
+    <li><a href="#frames">Frames</a></li>
     <li><a href="#about">About</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#skills">Skills</a></li>
   </ul>
-  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ashutosh.omane@gmail.com" target="_blank" class="nav-hire">Hire Me</a>
   <div class="nav-hamburger" id="hamburger" onclick="toggleMobileMenu()">
     <span></span><span></span><span></span>
   </div>
 </nav>
 
-<!-- ─── HERO ───────────────────────────────────────────── -->
+<!-- HERO -->
 <section id="hero">
   <div class="hero-eyebrow">Video Editor · Motion Designer</div>
-  <h1 id="heroH1">
+  <h1>
     <span class="h1-main" id="heroName"></span>
     <span class="h1-ghost" id="heroGhost"></span>
   </h1>
@@ -668,17 +330,17 @@ footer {
     <a href="#work" class="btn btn-r">View My Work</a>
     <a href="resume.pdf" class="btn btn-o" target="_blank">View Resume</a>
   </div>
-  <div class="scroll-hint">
-    <span class="scroll-hint-line"></span>Scroll
-  </div>
+  <div class="scroll-hint"><span class="scroll-hint-line"></span>Scroll</div>
 </section>
 
-<!-- ─── MARQUEE ───────────────────────────────────────── -->
+<!-- MARQUEE -->
 <div class="marquee-wrap">
   <div class="marquee-track" id="marqueeTrack"></div>
 </div>
 
-<!-- ─── WORK ──────────────────────────────────────────── -->
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 01 — WORK
+═══════════════════════════════════════════════════════ -->
 <div class="sw" id="work">
   <div class="sec-head reveal">
     <span class="sec-num">01</span>
@@ -724,16 +386,8 @@ footer {
     </div>
   </div>
 
-  <div class="mini-cta reveal">
-    <div class="mini-cta-text">Need a long-form editor? <strong>Let's talk about your project.</strong></div>
-    <div class="mini-btns">
-      <a class="mini-btn" href="https://mail.google.com/mail/?view=cm&fs=1&to=ashutosh.omane@gmail.com" target="_blank">✉ Email Me</a>
-      <a class="mini-btn" href="https://wa.me/917030480523" target="_blank">💬 WhatsApp</a>
-    </div>
-  </div>
-
   <p class="work-sublabel reveal" id="shortform" style="margin-top:4rem;">Short Form</p>
-  <div class="proj-grid reveal">
+  <div class="proj-grid reveal" style="margin-bottom:4rem;">
     <div class="proj-card">
       <div class="proj-thumb">
         <iframe src="https://www.youtube-nocookie.com/embed/6tYzQPLRQNM" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
@@ -757,22 +411,212 @@ footer {
       </div>
     </div>
   </div>
-
-  <div class="mini-cta reveal">
-    <div class="mini-cta-text">Need a short-form editor? <strong>Let's create content that holds attention.</strong></div>
-    <div class="mini-btns">
-      <a class="mini-btn" href="https://mail.google.com/mail/?view=cm&fs=1&to=ashutosh.omane@gmail.com" target="_blank">✉ Email Me</a>
-      <a class="mini-btn" href="https://wa.me/917030480523" target="_blank">💬 WhatsApp</a>
-    </div>
-  </div>
 </div>
 
 <hr class="divider-red">
 
-<!-- ─── ABOUT ─────────────────────────────────────────── -->
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 03 — FRAMES & MOTION GRAPHICS
+
+     ── HOW TO ADD PHOTOSHOP FRAMES ──────────────────────
+     1. Put your image files (JPG / PNG / WEBP) in the SAME
+        folder as index.html
+     2. Find each frame-card below and change:
+           src="FRAME_01.jpg"
+        to your actual filename, e.g.:
+           src="dubai-thumbnail.jpg"
+     3. Update the label text inside <span class="frame-label">
+     4. Clicking any frame opens a fullscreen lightbox popup.
+     5. To ADD more frames: copy any <div class="frame-card">
+        block (everything from <div class="frame-card"> to its
+        closing </div>) and paste it inside .frames-grid
+     6. To REMOVE unused slots: delete the entire frame-card block.
+
+     ── HOW TO ADD MOTION GRAPHIC FRAMES / CLIPS ─────────
+     1. For a still image:
+           <img src="mg-frame.jpg" alt="Motion 01">
+     2. For a short video clip (MP4 / WEBM):
+        Replace the <img> tag with:
+           <video src="clip.mp4" autoplay muted loop playsinline></video>
+     3. Same folder rule applies. Update label text too.
+     4. These are 9:16 portrait cards — perfect for vertical clips.
+        If you have a 16:9 motion graphic, add it to the Photoshop
+        Frames grid instead (it uses 16:9 cards).
+═══════════════════════════════════════════════════════ -->
+<div class="sw" id="frames">
+  <div class="sec-head reveal">
+    <span class="sec-num">03</span>
+    <div class="sec-label">Visual Work</div>
+    <h2>FRAMES & <span class="accent">GRAPHICS</span></h2>
+    <p class="sec-sub">Photoshop frames and motion graphic stills from projects.</p>
+  </div>
+
+  <!-- PHOTOSHOP FRAMES — 16:9 cards, click to open lightbox -->
+  <p class="frames-sublabel reveal">Selected Frames</p>
+  <div class="frames-grid reveal" id="psFramesGrid">
+
+    <!-- 🖼️ FRAME 01 — change src to your filename -->
+    <div class="frame-card" onclick="openLightbox(this)">
+      <img src="FRAME_01.jpg" alt="Frame 01" onerror="this.style.display='none'">
+      <div class="frame-placeholder"><span>Frame 01</span></div>
+      <div class="frame-overlay"><span class="frame-label">Frame 01</span></div>
+    </div>
+
+    <!-- 🖼️ FRAME 02 -->
+    <div class="frame-card" onclick="openLightbox(this)">
+      <img src="FRAME_02.jpg" alt="Frame 02" onerror="this.style.display='none'">
+      <div class="frame-placeholder"><span>Frame 02</span></div>
+      <div class="frame-overlay"><span class="frame-label">Frame 02</span></div>
+    </div>
+
+    <!-- 🖼️ FRAME 03 -->
+    <div class="frame-card" onclick="openLightbox(this)">
+      <img src="FRAME_03.jpg" alt="Frame 03" onerror="this.style.display='none'">
+      <div class="frame-placeholder"><span>Frame 03</span></div>
+      <div class="frame-overlay"><span class="frame-label">Frame 03</span></div>
+    </div>
+
+    <!-- 🖼️ FRAME 04 -->
+    <div class="frame-card" onclick="openLightbox(this)">
+      <img src="FRAME_04.jpg" alt="Frame 04" onerror="this.style.display='none'">
+      <div class="frame-placeholder"><span>Frame 04</span></div>
+      <div class="frame-overlay"><span class="frame-label">Frame 04</span></div>
+    </div>
+
+    <!-- 🖼️ FRAME 05 -->
+    <div class="frame-card" onclick="openLightbox(this)">
+      <img src="FRAME_05.jpg" alt="Frame 05" onerror="this.style.display='none'">
+      <div class="frame-placeholder"><span>Frame 05</span></div>
+      <div class="frame-overlay"><span class="frame-label">Frame 05</span></div>
+    </div>
+
+    <!-- 🖼️ FRAME 06 -->
+    <div class="frame-card" onclick="openLightbox(this)">
+      <img src="FRAME_06.jpg" alt="Frame 06" onerror="this.style.display='none'">
+      <div class="frame-placeholder"><span>Frame 06</span></div>
+      <div class="frame-overlay"><span class="frame-label">Frame 06</span></div>
+    </div>
+
+    <!-- 🖼️ FRAME 07 -->
+    <div class="frame-card" onclick="openLightbox(this)">
+      <img src="FRAME_07.jpg" alt="Frame 07" onerror="this.style.display='none'">
+      <div class="frame-placeholder"><span>Frame 07</span></div>
+      <div class="frame-overlay"><span class="frame-label">Frame 07</span></div>
+    </div>
+
+    <!-- 🖼️ FRAME 08 -->
+    <div class="frame-card" onclick="openLightbox(this)">
+      <img src="FRAME_08.jpg" alt="Frame 08" onerror="this.style.display='none'">
+      <div class="frame-placeholder"><span>Frame 08</span></div>
+      <div class="frame-overlay"><span class="frame-label">Frame 08</span></div>
+    </div>
+
+    <!-- 🖼️ FRAME 09 -->
+    <div class="frame-card" onclick="openLightbox(this)">
+      <img src="FRAME_09.jpg" alt="Frame 09" onerror="this.style.display='none'">
+      <div class="frame-placeholder"><span>Frame 09</span></div>
+      <div class="frame-overlay"><span class="frame-label">Frame 09</span></div>
+    </div>
+
+    <!-- 🖼️ FRAME 10 -->
+    <div class="frame-card" onclick="openLightbox(this)">
+      <img src="FRAME_10.jpg" alt="Frame 10" onerror="this.style.display='none'">
+      <div class="frame-placeholder"><span>Frame 10</span></div>
+      <div class="frame-overlay"><span class="frame-label">Frame 10</span></div>
+    </div>
+
+  </div><!-- /frames-grid -->
+
+  <!-- MOTION GRAPHICS — 9:16 portrait cards -->
+  <p class="frames-sublabel reveal" style="margin-top:1rem;">Visual Design</p>
+  <div class="mg-grid reveal">
+
+    <!-- 🎬 MG 01 — for video: replace <img> with <video src="clip.mp4" autoplay muted loop playsinline></video> -->
+    <div class="mg-card" onclick="openLightbox(this)">
+      <img src="MG_01.jpg" alt="Motion 01" onerror="this.style.display='none'">
+      <div class="frame-placeholder"><span>Motion 01</span></div>
+      <div class="frame-overlay"><span class="frame-label">Motion 01</span></div>
+    </div>
+
+    <!-- 🎬 MG 02 -->
+    <div class="mg-card" onclick="openLightbox(this)">
+      <img src="MG_02.jpg" alt="Motion 02" onerror="this.style.display='none'">
+      <div class="frame-placeholder"><span>Motion 02</span></div>
+      <div class="frame-overlay"><span class="frame-label">Motion 02</span></div>
+    </div>
+
+    <!-- 🎬 MG 03 -->
+    <div class="mg-card" onclick="openLightbox(this)">
+      <img src="MG_03.jpg" alt="Motion 03" onerror="this.style.display='none'">
+      <div class="frame-placeholder"><span>Motion 03</span></div>
+      <div class="frame-overlay"><span class="frame-label">Motion 03</span></div>
+    </div>
+
+    <!-- 🎬 MG 04 -->
+    <div class="mg-card" onclick="openLightbox(this)">
+      <img src="MG_04.jpg" alt="Motion 04" onerror="this.style.display='none'">
+      <div class="frame-placeholder"><span>Motion 04</span></div>
+      <div class="frame-overlay"><span class="frame-label">Motion 04</span></div>
+    </div>
+
+    <!-- 🎬 MG 05 -->
+    <div class="mg-card" onclick="openLightbox(this)">
+      <img src="MG_05.jpg" alt="Motion 05" onerror="this.style.display='none'">
+      <div class="frame-placeholder"><span>Motion 05</span></div>
+      <div class="frame-overlay"><span class="frame-label">Motion 05</span></div>
+    </div>
+
+    <!-- 🎬 MG 06 -->
+    <div class="mg-card" onclick="openLightbox(this)">
+      <img src="MG_06.jpg" alt="Motion 06" onerror="this.style.display='none'">
+      <div class="frame-placeholder"><span>Motion 06</span></div>
+      <div class="frame-overlay"><span class="frame-label">Motion 06</span></div>
+    </div>
+
+  
+    <div class="mg-card" onclick="openLightbox(this)">
+      <img src="MG_07.jpg" alt="Motion 07" onerror="this.style.display='none'">
+      <div class="frame-placeholder"><span>Motion 07</span></div>
+      <div class="frame-overlay"><span class="frame-label">Motion 07</span></div>
+    </div>
+
+    <div class="mg-card" onclick="openLightbox(this)">
+      <img src="MG_08.jpg" alt="Motion 08" onerror="this.style.display='none'">
+      <div class="frame-placeholder"><span>Motion 08</span></div>
+      <div class="frame-overlay"><span class="frame-label">Motion 08</span></div>
+    </div>
+
+    <div class="mg-card" onclick="openLightbox(this)">
+      <img src="MG_09.jpg" alt="Motion 09" onerror="this.style.display='none'">
+      <div class="frame-placeholder"><span>Motion 09</span></div>
+      <div class="frame-overlay"><span class="frame-label">Motion 09</span></div>
+    </div>
+
+    <div class="mg-card" onclick="openLightbox(this)">
+      <img src="MG_10.jpg" alt="Motion 10" onerror="this.style.display='none'">
+      <div class="frame-placeholder"><span>Motion 10</span></div>
+      <div class="frame-overlay"><span class="frame-label">Motion 10</span></div>
+    </div>
+
+  </div><!-- /mg-grid -->
+</div>
+
+<hr class="divider-red">
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 04 — ABOUT
+
+     HOW TO ADD YOUR PHOTO:
+     1. Put your photo file in the SAME folder as index.html
+     2. Find the line:  src="YOUR_PHOTO.jpg"
+     3. Replace YOUR_PHOTO.jpg with your actual filename
+        e.g.  src="ashutosh.jpg"
+     Works best with a portrait (vertical) photo.
+     Until you add it a placeholder silhouette shows instead.
+═══════════════════════════════════════════════════════ -->
 <div class="sw">
   <div class="sec-head reveal" id="about">
-    <span class="sec-num">02</span>
+    <span class="sec-num">04</span>
     <div class="sec-label">About Me</div>
     <h2>MY <span class="accent">STORY</span></h2>
   </div>
@@ -782,189 +626,177 @@ footer {
       <p>My fascination with video production began from a curiosity about how stories are crafted through editing. What started as an interest gradually evolved into a focused pursuit of visual storytelling and content creation.</p>
       <p>My background in graphic design helped me develop strong visual communication skills, while years spent studying financial markets strengthened my analytical thinking, attention to detail, and problem-solving abilities.</p>
       <p>Today, I combine design principles, storytelling, motion graphics, and modern AI tools to create engaging content for creators, brands, and digital platforms.</p>
-      <p>Based in <strong>Pune, Pimpri-Chinchwad, Maharashtra</strong> — available for on-site, hybrid, and remote opportunities.</p>
+      <p>Based in <strong>Pune, Pimpri-Chinchwad, Maharashtra.</strong></p>
     </div>
     <div class="reveal">
-      <div class="sec-label" style="margin-bottom:1rem;">Software</div>
-      <div class="sw-grid">
-        <div class="sw-card">
-          <span class="sw-ico">🎬</span>
-          <span class="sw-name">Premiere Pro</span>
-          <span class="sw-role">Video Editing</span>
+      <!-- 📸 Replace YOUR_PHOTO.jpg with your actual photo filename -->
+      <div class="about-photo">
+        <img id="aboutPhoto" src="YOUR_PHOTO.jpg" alt="Ashutosh Omane"
+             onerror="this.style.display='none';document.getElementById('photoPlaceholder').style.display='flex'">
+        <div class="about-photo-placeholder" id="photoPlaceholder" style="display:none;">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" style="opacity:.25"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span>Add your photo — see guide above</span>
         </div>
-        <div class="sw-card">
-          <span class="sw-ico">✨</span>
-          <span class="sw-name">After Effects</span>
-          <span class="sw-role">Motion Graphics</span>
-        </div>
-        <div class="sw-card">
-          <span class="sw-ico">🖼️</span>
-          <span class="sw-name">Photoshop</span>
-          <span class="sw-role">Image Design</span>
-        </div>
-        <div class="sw-card">
-          <span class="sw-ico">🎨</span>
-          <span class="sw-name">Illustrator</span>
-          <span class="sw-role">Vector Design</span>
-        </div>
+      </div>
+      <p class="photo-caption">Ashutosh Omane — Pune, India</p>
+    </div>
+  </div>
+</div>
+
+<hr class="divider-red">
+
+<!-- SECTION 05 — SKILLS -->
+<div class="sw tinted">
+  <div class="sec-head reveal" id="skills">
+    <span class="sec-num">05</span>
+    <div class="sec-label">Toolkit</div>
+    <h2>SKILLS & <span class="accent">SOFTWARE</span></h2>
+  </div>
+  <div style="padding:0 5vw 5rem;">
+    <div class="sw-grid reveal">
+      <div class="sw-card">
+        <span class="sw-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="color:var(--red)"><rect x="2" y="3" width="20" height="14" rx="1"/><path d="M8 7l5 3.5L8 14V7z"/></svg></span>
+        <span class="sw-name">Premiere Pro</span><span class="sw-role">Video Editing</span>
+      </div>
+      <div class="sw-card">
+        <span class="sw-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="color:var(--red)"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg></span>
+        <span class="sw-name">After Effects</span><span class="sw-role">Visual Design</span>
+      </div>
+      <div class="sw-card">
+        <span class="sw-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="color:var(--red)"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></span>
+        <span class="sw-name">Photoshop</span><span class="sw-role">Image Design</span>
+      </div>
+      <div class="sw-card">
+        <span class="sw-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="color:var(--red)"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></span>
+        <span class="sw-name">Illustrator</span><span class="sw-role">Vector Design</span>
       </div>
     </div>
   </div>
 </div>
 
-<hr class="divider-red">
-
-<!-- ─── SERVICES ──────────────────────────────────────── -->
-<div class="sw">
-  <div class="sec-head reveal">
-    <span class="sec-num">03</span>
-    <div class="sec-label">What I Offer</div>
-    <h2>SERVICES</h2>
-  </div>
-  <div class="srv-grid reveal" id="services">
-    <div class="srv-card">
-      <span class="srv-ico">🎬</span>
-      <p class="srv-title">Long-Form Editing</p>
-      <p class="srv-desc">YouTube videos, documentaries, interviews, vlogs. Full post-production from rough cut to final delivery.</p>
-    </div>
-    <div class="srv-card">
-      <span class="srv-ico">⚡</span>
-      <p class="srv-title">Short Form / Reels</p>
-      <p class="srv-desc">Instagram Reels, YouTube Shorts, TikToks. Fast-paced, hook-driven edits built for every platform.</p>
-    </div>
-    <div class="srv-card">
-      <span class="srv-ico">🎨</span>
-      <p class="srv-title">Motion Graphics</p>
-      <p class="srv-desc">Titles, lower thirds, animated logos, and visual effects to elevate your content.</p>
-    </div>
-    <div class="srv-card">
-      <span class="srv-ico">🤖</span>
-      <p class="srv-title">AI-Assisted Workflows</p>
-      <p class="srv-desc">Faster delivery and smarter edits using modern AI tools integrated into the post-production pipeline.</p>
-    </div>
-  </div>
-</div>
-
-<hr class="divider-red">
-
-<!-- ─── CONTACT ───────────────────────────────────────── -->
-<div class="sw">
-  <div class="sec-head reveal" style="text-align:center;" id="contact">
-    <span class="sec-num" style="right:auto;left:5vw;">04</span>
-    <div class="sec-label" style="justify-content:center;">Get In Touch</div>
-    <h2>LET'S <span class="accent">WORK</span></h2>
-  </div>
-  <div class="contact-wrap reveal">
-    <p class="contact-intro">Currently seeking full-time Video Editor opportunities with creators, agencies, and media companies.</p>
-    <div class="contact-pills">
-      <a class="contact-pill primary" href="https://mail.google.com/mail/?view=cm&fs=1&to=ashutosh.omane@gmail.com" target="_blank">✉ ashutosh.omane@gmail.com</a>
-      <a class="contact-pill" href="https://wa.me/917030480523" target="_blank">💬 +91 70304 80523</a>
-    </div>
-  </div>
-</div>
-
-<!-- ─── FOOTER ─────────────────────────────────────────── -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-brand">Ashutosh Omane<span>.</span></div>
-  <div class="footer-note">© 2026 — Video Editor · Pune, Pimpri-Chinchwad, Maharashtra</div>
+  <div class="footer-note">© 2026 — Video Editor · Motion Designer · Pune, India</div>
 </footer>
 
 <script>
-/* ── Precise badge scroll ─────────────────────────────── */
+/* ── Lightbox ──────────────────────────────────────────── */
+let lightboxImages = [];
+let currentLightboxIndex = 0;
+
+function buildLightboxImages() {
+  // Collect all clickable frame images
+  lightboxImages = [];
+  document.querySelectorAll('.frame-card img, .mg-card img').forEach(img => {
+    if (img.style.display !== 'none' && img.src && !img.src.includes('FRAME_') && !img.src.includes('MG_')) {
+      lightboxImages.push({ src: img.src, alt: img.alt });
+    }
+  });
+}
+
+function openLightbox(card) {
+  const img = card.querySelector('img');
+  if (!img || img.style.display === 'none') return;
+  buildLightboxImages();
+  const src = img.src;
+  currentLightboxIndex = lightboxImages.findIndex(i => i.src === src);
+  if (currentLightboxIndex === -1) currentLightboxIndex = 0;
+  const lb = document.getElementById('lightbox');
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightboxImg').alt = img.alt;
+  updateLightboxCounter();
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function updateLightboxCounter() {
+  const c = document.getElementById('lightboxCounter');
+  if (lightboxImages.length > 1) {
+    c.textContent = `${currentLightboxIndex + 1} / ${lightboxImages.length}`;
+  } else { c.textContent = ''; }
+}
+
+function closeLightbox(e) {
+  if (e && e.target !== e.currentTarget && !e.target.classList.contains('lightbox-close')) return;
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', e => {
+  const lb = document.getElementById('lightbox');
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') { lb.classList.remove('open'); document.body.style.overflow = ''; }
+  if (e.key === 'ArrowRight' && lightboxImages.length > 1) {
+    currentLightboxIndex = (currentLightboxIndex + 1) % lightboxImages.length;
+    document.getElementById('lightboxImg').src = lightboxImages[currentLightboxIndex].src;
+    updateLightboxCounter();
+  }
+  if (e.key === 'ArrowLeft' && lightboxImages.length > 1) {
+    currentLightboxIndex = (currentLightboxIndex - 1 + lightboxImages.length) % lightboxImages.length;
+    document.getElementById('lightboxImg').src = lightboxImages[currentLightboxIndex].src;
+    updateLightboxCounter();
+  }
+});
+
+/* ── Badge scroll ─────────────────────────────────────── */
 function scrollToSection(id, e) {
   e.preventDefault();
   const el = document.getElementById(id);
   if (!el) return;
   const navH = document.getElementById('mainNav').offsetHeight;
-  // scroll so the sublabel sits right under the nav with a small gap
-  const top = el.getBoundingClientRect().top + window.scrollY - navH - 8;
-  window.scrollTo({ top, behavior: 'smooth' });
+  window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - navH - 8, behavior:'smooth' });
 }
 
-/* ── Split text hero ──────────────────────────────────── */
-const NAME  = 'ASHUTOSH';
-const GHOST = 'OMANE';
-const nameEl  = document.getElementById('heroName');
-const ghostEl = document.getElementById('heroGhost');
-
-NAME.split('').forEach((ch, i) => {
-  const s = document.createElement('span');
-  s.className = 'letter';
-  s.textContent = ch;
-  s.style.animationDelay = `${0.35 + i * 0.055}s`;
-  nameEl.appendChild(s);
-});
-GHOST.split('').forEach((ch, i) => {
-  const s = document.createElement('span');
-  s.className = 'letter';
-  s.textContent = ch;
-  s.style.animationDelay = `${0.55 + i * 0.055}s`;
-  ghostEl.appendChild(s);
+/* ── Split text ───────────────────────────────────────── */
+['heroName','heroGhost'].forEach((id, gi) => {
+  const el = document.getElementById(id);
+  (gi===0?'ASHUTOSH':'OMANE').split('').forEach((ch,i) => {
+    const s = document.createElement('span');
+    s.className='letter'; s.textContent=ch;
+    s.style.animationDelay=`${(gi===0?0.35:0.55)+i*0.055}s`;
+    el.appendChild(s);
+  });
 });
 
-/* ── Spotlight follow ─────────────────────────────────── */
+/* ── Spotlight ────────────────────────────────────────── */
 const spotlight = document.getElementById('spotlight');
-let spX = window.innerWidth / 2, spY = window.innerHeight / 2;
-let rX = spX, rY = spY;
-window.addEventListener('mousemove', e => { spX = e.clientX; spY = e.clientY; }, { passive: true });
-(function animateSpot() {
-  rX += (spX - rX) * 0.07;
-  rY += (spY - rY) * 0.07;
-  spotlight.style.background = `radial-gradient(circle 420px at ${rX}px ${rY}px, rgba(224,32,32,0.032) 0%, transparent 70%)`;
-  requestAnimationFrame(animateSpot);
-})();
+let spX=window.innerWidth/2,spY=window.innerHeight/2,rX=spX,rY=spY;
+window.addEventListener('mousemove',e=>{spX=e.clientX;spY=e.clientY;},{passive:true});
+(function loop(){rX+=(spX-rX)*.07;rY+=(spY-rY)*.07;spotlight.style.background=`radial-gradient(circle 420px at ${rX}px ${rY}px,rgba(204,31,31,.03) 0%,transparent 70%)`;requestAnimationFrame(loop);})();
 
 /* ── Marquee ──────────────────────────────────────────── */
-const items = [
-  'Long Form Editing','Short Form Reels','Motion Design',
-  'AI Workflows','Documentary Style','YouTube Content',
-  'Visual Storytelling','Available for Hire','Pune · India',
-  'Premiere Pro','After Effects'
-];
-const track = document.getElementById('marqueeTrack');
-[...items, ...items].forEach((text, i) => {
-  const sp = document.createElement('span');
-  sp.className = 'marquee-item';
-  sp.textContent = text;
-  track.appendChild(sp);
-  const dot = document.createElement('span');
-  dot.className = 'marquee-sep';
-  dot.textContent = '◆';
-  track.appendChild(dot);
+const items=['Long Form Editing','Short Form Reels','Motion Design','Documentary Style','YouTube Content','Visual Storytelling','Premiere Pro','After Effects','Pune · India'];
+const track=document.getElementById('marqueeTrack');
+[...items,...items].forEach(t=>{
+  const s=document.createElement('span');s.className='marquee-item';s.textContent=t;track.appendChild(s);
+  const d=document.createElement('span');d.className='marquee-sep';d.textContent='·';track.appendChild(d);
 });
 
 /* ── Scroll reveal ────────────────────────────────────── */
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
-  });
-}, { threshold: 0.07, rootMargin: '0px 0px -30px 0px' });
-document.querySelectorAll('.reveal').forEach((el, i) => {
-  el.style.transitionDelay = `${(i % 3) * 80}ms`;
-  obs.observe(el);
-});
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+},{threshold:.07,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=`${(i%3)*80}ms`;obs.observe(el);});
 
-/* ── Nav shrink on scroll ─────────────────────────────── */
-const nav = document.getElementById('mainNav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 60);
-}, { passive: true });
+/* ── Nav shrink ───────────────────────────────────────── */
+const nav=document.getElementById('mainNav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>60);},{passive:true});
 
 /* ── Mobile menu ──────────────────────────────────────── */
-const menu = document.getElementById('mobileMenu');
-const ham  = document.getElementById('hamburger');
-function toggleMobileMenu() {
-  menu.classList.toggle('open');
-  ham.classList.toggle('open');
-  document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
-}
-function closeMobileMenu() {
-  menu.classList.remove('open');
-  ham.classList.remove('open');
-  document.body.style.overflow = '';
-}
+const menu=document.getElementById('mobileMenu'),ham=document.getElementById('hamburger');
+function toggleMobileMenu(){menu.classList.toggle('open');ham.classList.toggle('open');document.body.style.overflow=menu.classList.contains('open')?'hidden':'';}
+function closeMobileMenu(){menu.classList.remove('open');ham.classList.remove('open');document.body.style.overflow='';}
+
+/* ── Photo fallback ───────────────────────────────────── */
+window.addEventListener('load',()=>{
+  const img=document.getElementById('aboutPhoto');
+  if(img&&(img.src.includes('YOUR_PHOTO')||!img.complete||img.naturalWidth===0)){
+    img.style.display='none';
+    document.getElementById('photoPlaceholder').style.display='flex';
+  }
+});
 </script>
 </body>
 </html>
-
-<!-- anchor fix applied -->
