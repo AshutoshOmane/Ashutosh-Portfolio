@@ -187,11 +187,11 @@ h2 .accent{color:var(--red);}
 .frame-label{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--white);}
 
 /* Motion graphics — 9:16 portrait for vertical clips */
-.mg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1px;background:var(--line2);border:1px solid var(--line2);margin:0 5vw 3rem;}
+.mg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--line2);border:1px solid var(--line2);margin:0 5vw 4rem;}
 .mg-card{background:var(--card);overflow:hidden;position:relative;aspect-ratio:16/9;transition:transform .3s,box-shadow .3s;cursor:pointer;}
 .mg-card:hover{transform:scale(1.02);box-shadow:0 0 30px rgba(204,31,31,.12);z-index:2;}
-.mg-card img,.mg-card video{width:100%;height:100%;object-fit:cover;display:block;}
-.mg-card .frame-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;position:absolute;inset:0;background:var(--card);}
+.mg-card img,.mg-card video{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:2;}
+.mg-card .frame-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;position:absolute;inset:0;background:var(--card);pointer-events:none;z-index:1;}
 .mg-card .frame-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.72) 0%,transparent 55%);opacity:0;transition:opacity .3s;display:flex;align-items:flex-end;padding:1rem;}
 .mg-card:hover .frame-overlay{opacity:1;}
 
@@ -450,70 +450,70 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line2);padding:1.4
   <div class="frames-grid reveal" id="psFramesGrid">
 
     <!-- 🖼️ FRAME 01 — change src to your filename -->
-    <div class="frame-card" >
+    <div class="frame-card" onclick="openLightbox(this)">
       <img src="FRAME_01.jpg" alt="Frame 01" onerror="this.style.display='none'">
       <div class="frame-placeholder"><span>Frame 01</span></div>
       <div class="frame-overlay"><span class="frame-label">Frame 01</span></div>
     </div>
 
     <!-- 🖼️ FRAME 02 -->
-    <div class="frame-card" >
+    <div class="frame-card" onclick="openLightbox(this)">
       <img src="FRAME_02.jpg" alt="Frame 02" onerror="this.style.display='none'">
       <div class="frame-placeholder"><span>Frame 02</span></div>
       <div class="frame-overlay"><span class="frame-label">Frame 02</span></div>
     </div>
 
     <!-- 🖼️ FRAME 03 -->
-    <div class="frame-card" >
+    <div class="frame-card" onclick="openLightbox(this)">
       <img src="FRAME_03.jpg" alt="Frame 03" onerror="this.style.display='none'">
       <div class="frame-placeholder"><span>Frame 03</span></div>
       <div class="frame-overlay"><span class="frame-label">Frame 03</span></div>
     </div>
 
     <!-- 🖼️ FRAME 04 -->
-    <div class="frame-card" >
+    <div class="frame-card" onclick="openLightbox(this)">
       <img src="FRAME_04.jpg" alt="Frame 04" onerror="this.style.display='none'">
       <div class="frame-placeholder"><span>Frame 04</span></div>
       <div class="frame-overlay"><span class="frame-label">Frame 04</span></div>
     </div>
 
     <!-- 🖼️ FRAME 05 -->
-    <div class="frame-card" >
+    <div class="frame-card" onclick="openLightbox(this)">
       <img src="FRAME_05.jpg" alt="Frame 05" onerror="this.style.display='none'">
       <div class="frame-placeholder"><span>Frame 05</span></div>
       <div class="frame-overlay"><span class="frame-label">Frame 05</span></div>
     </div>
 
     <!-- 🖼️ FRAME 06 -->
-    <div class="frame-card" >
+    <div class="frame-card" onclick="openLightbox(this)">
       <img src="FRAME_06.jpg" alt="Frame 06" onerror="this.style.display='none'">
       <div class="frame-placeholder"><span>Frame 06</span></div>
       <div class="frame-overlay"><span class="frame-label">Frame 06</span></div>
     </div>
 
     <!-- 🖼️ FRAME 07 -->
-    <div class="frame-card" >
+    <div class="frame-card" onclick="openLightbox(this)">
       <img src="FRAME_07.jpg" alt="Frame 07" onerror="this.style.display='none'">
       <div class="frame-placeholder"><span>Frame 07</span></div>
       <div class="frame-overlay"><span class="frame-label">Frame 07</span></div>
     </div>
 
     <!-- 🖼️ FRAME 08 -->
-    <div class="frame-card" >
+    <div class="frame-card" onclick="openLightbox(this)">
       <img src="FRAME_08.jpg" alt="Frame 08" onerror="this.style.display='none'">
       <div class="frame-placeholder"><span>Frame 08</span></div>
       <div class="frame-overlay"><span class="frame-label">Frame 08</span></div>
     </div>
 
     <!-- 🖼️ FRAME 09 -->
-    <div class="frame-card" >
+    <div class="frame-card" onclick="openLightbox(this)">
       <img src="FRAME_09.jpg" alt="Frame 09" onerror="this.style.display='none'">
       <div class="frame-placeholder"><span>Frame 09</span></div>
       <div class="frame-overlay"><span class="frame-label">Frame 09</span></div>
     </div>
 
     <!-- 🖼️ FRAME 10 -->
-    <div class="frame-card" >
+    <div class="frame-card" onclick="openLightbox(this)">
       <img src="FRAME_10.jpg" alt="Frame 10" onerror="this.style.display='none'">
       <div class="frame-placeholder"><span>Frame 10</span></div>
       <div class="frame-overlay"><span class="frame-label">Frame 10</span></div>
@@ -567,7 +567,31 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line2);padding:1.4
       <div class="frame-overlay"><span class="frame-label">Motion 06</span></div>
     </div>
 
-  </div><!-- /mg-grid -->
+  
+    <div class="mg-card">
+      <video autoplay muted loop playsinline preload="metadata"><source src="MG_07.mp4" type="video/mp4"></video>
+      <div class="frame-placeholder"><span>Motion 07</span></div>
+      <div class="frame-overlay"><span class="frame-label">Motion 07</span></div>
+    </div>
+
+    <div class="mg-card">
+      <video autoplay muted loop playsinline preload="metadata"><source src="MG_08.mp4" type="video/mp4"></video>
+      <div class="frame-placeholder"><span>Motion 08</span></div>
+      <div class="frame-overlay"><span class="frame-label">Motion 08</span></div>
+    </div>
+
+    <div class="mg-card">
+      <video autoplay muted loop playsinline preload="metadata"><source src="MG_09.mp4" type="video/mp4"></video>
+      <div class="frame-placeholder"><span>Motion 09</span></div>
+      <div class="frame-overlay"><span class="frame-label">Motion 09</span></div>
+    </div>
+
+    <div class="mg-card">
+      <video autoplay muted loop playsinline preload="metadata"><source src="MG_10.mp4" type="video/mp4"></video>
+      <div class="frame-placeholder"><span>Motion 10</span></div>
+      <div class="frame-overlay"><span class="frame-label">Motion 10</span></div>
+    </div>
+</div><!-- /mg-grid -->
 </div>
 
 <hr class="divider-red">
