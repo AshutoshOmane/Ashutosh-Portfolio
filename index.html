@@ -70,7 +70,7 @@ nav.scrolled{padding:.7rem 5vw;}
   display:flex;align-items:center;justify-content:center;gap:1rem;opacity:0;animation:fadeUp .7s .1s forwards;position:relative;z-index:2;}
 .hero-eyebrow::before,.hero-eyebrow::after{content:'';display:block;width:28px;height:1px;background:var(--red);opacity:.55;}
 h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(5rem,13vw,11rem);line-height:1;letter-spacing:.03em;position:relative;z-index:2;}
-.h1-main{display:block;color:#f0f0f0;animation:subtleFlicker 4s infinite;}
+.h1-main{display:block;color:#f0f0f0;}
 .h1-ghost{display:block;color:transparent;-webkit-text-stroke:1px rgba(240,240,240,.22);transition:-webkit-text-stroke-color .4s;}
 h1:hover .h1-ghost{-webkit-text-stroke-color:rgba(240,240,240,.42);}
 .h1-main .letter,.h1-ghost .letter{display:inline-block;opacity:0;transform:translateY(30px) rotate(3deg);animation:letterDrop .5s ease forwards;}
@@ -177,17 +177,17 @@ h2 .accent{color:var(--red);}
 /* 16:9 for Photoshop frames */
 .frame-card{background:var(--card);overflow:hidden;position:relative;aspect-ratio:16/9;transition:transform .3s,box-shadow .3s;cursor:pointer;}
 .frame-card:hover{transform:scale(1.02);box-shadow:0 0 30px rgba(204,31,31,.12);z-index:2;}
-.frame-card img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.9);transition:filter .3s;}
+.frame-card img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.9);transition:filter .3s;position:relative;z-index:2;}
 .frame-card:hover img{filter:brightness(1);}
 /* placeholder when no image loaded */
-.frame-card .frame-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;position:absolute;inset:0;background:var(--card);}
+.frame-card .frame-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;position:absolute;inset:0;background:var(--card);pointer-events:none;z-index:1;}
 .frame-card .frame-placeholder span{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);opacity:.45;}
 .frame-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.72) 0%,transparent 55%);opacity:0;transition:opacity .3s;display:flex;align-items:flex-end;padding:1rem;}
 .frame-card:hover .frame-overlay{opacity:1;}
 .frame-label{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--white);}
 
 /* Motion graphics — 9:16 portrait for vertical clips */
-.mg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--line2);border:1px solid var(--line2);margin:0 5vw 4rem;}
+.mg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1px;background:var(--line2);border:1px solid var(--line2);margin:0 5vw 3rem;}
 .mg-card{background:var(--card);overflow:hidden;position:relative;aspect-ratio:16/9;transition:transform .3s,box-shadow .3s;cursor:pointer;}
 .mg-card:hover{transform:scale(1.02);box-shadow:0 0 30px rgba(204,31,31,.12);z-index:2;}
 .mg-card img,.mg-card video{width:100%;height:100%;object-fit:cover;display:block;}
@@ -243,12 +243,6 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line2);padding:1.4
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 @keyframes pulseLine{0%,100%{opacity:.35;transform:scaleY(1);}50%{opacity:1;transform:scaleY(1.08);}}
 @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-
-@keyframes subtleFlicker{
-  0%,18%,20%,62%,64%,100%{opacity:1;}
-  19%,63%{opacity:.35;}
-}
-
 
 /* SCROLL MARGIN */
 #longform,#shortform{scroll-margin-top:70px;}
@@ -456,70 +450,70 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line2);padding:1.4
   <div class="frames-grid reveal" id="psFramesGrid">
 
     <!-- 🖼️ FRAME 01 — change src to your filename -->
-    <div class="frame-card" onclick="openLightbox(this)">
+    <div class="frame-card" >
       <img src="FRAME_01.jpg" alt="Frame 01" onerror="this.style.display='none'">
       <div class="frame-placeholder"><span>Frame 01</span></div>
       <div class="frame-overlay"><span class="frame-label">Frame 01</span></div>
     </div>
 
     <!-- 🖼️ FRAME 02 -->
-    <div class="frame-card" onclick="openLightbox(this)">
+    <div class="frame-card" >
       <img src="FRAME_02.jpg" alt="Frame 02" onerror="this.style.display='none'">
       <div class="frame-placeholder"><span>Frame 02</span></div>
       <div class="frame-overlay"><span class="frame-label">Frame 02</span></div>
     </div>
 
     <!-- 🖼️ FRAME 03 -->
-    <div class="frame-card" onclick="openLightbox(this)">
+    <div class="frame-card" >
       <img src="FRAME_03.jpg" alt="Frame 03" onerror="this.style.display='none'">
       <div class="frame-placeholder"><span>Frame 03</span></div>
       <div class="frame-overlay"><span class="frame-label">Frame 03</span></div>
     </div>
 
     <!-- 🖼️ FRAME 04 -->
-    <div class="frame-card" onclick="openLightbox(this)">
+    <div class="frame-card" >
       <img src="FRAME_04.jpg" alt="Frame 04" onerror="this.style.display='none'">
       <div class="frame-placeholder"><span>Frame 04</span></div>
       <div class="frame-overlay"><span class="frame-label">Frame 04</span></div>
     </div>
 
     <!-- 🖼️ FRAME 05 -->
-    <div class="frame-card" onclick="openLightbox(this)">
+    <div class="frame-card" >
       <img src="FRAME_05.jpg" alt="Frame 05" onerror="this.style.display='none'">
       <div class="frame-placeholder"><span>Frame 05</span></div>
       <div class="frame-overlay"><span class="frame-label">Frame 05</span></div>
     </div>
 
     <!-- 🖼️ FRAME 06 -->
-    <div class="frame-card" onclick="openLightbox(this)">
+    <div class="frame-card" >
       <img src="FRAME_06.jpg" alt="Frame 06" onerror="this.style.display='none'">
       <div class="frame-placeholder"><span>Frame 06</span></div>
       <div class="frame-overlay"><span class="frame-label">Frame 06</span></div>
     </div>
 
     <!-- 🖼️ FRAME 07 -->
-    <div class="frame-card" onclick="openLightbox(this)">
+    <div class="frame-card" >
       <img src="FRAME_07.jpg" alt="Frame 07" onerror="this.style.display='none'">
       <div class="frame-placeholder"><span>Frame 07</span></div>
       <div class="frame-overlay"><span class="frame-label">Frame 07</span></div>
     </div>
 
     <!-- 🖼️ FRAME 08 -->
-    <div class="frame-card" onclick="openLightbox(this)">
+    <div class="frame-card" >
       <img src="FRAME_08.jpg" alt="Frame 08" onerror="this.style.display='none'">
       <div class="frame-placeholder"><span>Frame 08</span></div>
       <div class="frame-overlay"><span class="frame-label">Frame 08</span></div>
     </div>
 
     <!-- 🖼️ FRAME 09 -->
-    <div class="frame-card" onclick="openLightbox(this)">
+    <div class="frame-card" >
       <img src="FRAME_09.jpg" alt="Frame 09" onerror="this.style.display='none'">
       <div class="frame-placeholder"><span>Frame 09</span></div>
       <div class="frame-overlay"><span class="frame-label">Frame 09</span></div>
     </div>
 
     <!-- 🖼️ FRAME 10 -->
-    <div class="frame-card" onclick="openLightbox(this)">
+    <div class="frame-card" >
       <img src="FRAME_10.jpg" alt="Frame 10" onerror="this.style.display='none'">
       <div class="frame-placeholder"><span>Frame 10</span></div>
       <div class="frame-overlay"><span class="frame-label">Frame 10</span></div>
@@ -533,69 +527,44 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line2);padding:1.4
 
     <!-- 🎬 MG 01 — for video: replace <img> with <video src="clip.mp4" autoplay muted loop playsinline></video> -->
     <div class="mg-card" onclick="openLightbox(this)">
-      <img src="MG_01.jpg" alt="Motion 01" onerror="this.style.display='none'">
+      <video autoplay muted loop playsinline preload="metadata"><source src="MG_01.mp4" type="video/mp4"></video>
       <div class="frame-placeholder"><span>Motion 01</span></div>
       <div class="frame-overlay"><span class="frame-label">Motion 01</span></div>
     </div>
 
     <!-- 🎬 MG 02 -->
     <div class="mg-card" onclick="openLightbox(this)">
-      <img src="MG_02.jpg" alt="Motion 02" onerror="this.style.display='none'">
+      <video autoplay muted loop playsinline preload="metadata"><source src="MG_02.mp4" type="video/mp4"></video>
       <div class="frame-placeholder"><span>Motion 02</span></div>
       <div class="frame-overlay"><span class="frame-label">Motion 02</span></div>
     </div>
 
     <!-- 🎬 MG 03 -->
     <div class="mg-card" onclick="openLightbox(this)">
-      <img src="MG_03.jpg" alt="Motion 03" onerror="this.style.display='none'">
+      <video autoplay muted loop playsinline preload="metadata"><source src="MG_03.mp4" type="video/mp4"></video>
       <div class="frame-placeholder"><span>Motion 03</span></div>
       <div class="frame-overlay"><span class="frame-label">Motion 03</span></div>
     </div>
 
     <!-- 🎬 MG 04 -->
     <div class="mg-card" onclick="openLightbox(this)">
-      <img src="MG_04.jpg" alt="Motion 04" onerror="this.style.display='none'">
+      <video autoplay muted loop playsinline preload="metadata"><source src="MG_04.mp4" type="video/mp4"></video>
       <div class="frame-placeholder"><span>Motion 04</span></div>
       <div class="frame-overlay"><span class="frame-label">Motion 04</span></div>
     </div>
 
     <!-- 🎬 MG 05 -->
     <div class="mg-card" onclick="openLightbox(this)">
-      <img src="MG_05.jpg" alt="Motion 05" onerror="this.style.display='none'">
+      <video autoplay muted loop playsinline preload="metadata"><source src="MG_05.mp4" type="video/mp4"></video>
       <div class="frame-placeholder"><span>Motion 05</span></div>
       <div class="frame-overlay"><span class="frame-label">Motion 05</span></div>
     </div>
 
     <!-- 🎬 MG 06 -->
     <div class="mg-card" onclick="openLightbox(this)">
-      <img src="MG_06.jpg" alt="Motion 06" onerror="this.style.display='none'">
+      <video autoplay muted loop playsinline preload="metadata"><source src="MG_06.mp4" type="video/mp4"></video>
       <div class="frame-placeholder"><span>Motion 06</span></div>
       <div class="frame-overlay"><span class="frame-label">Motion 06</span></div>
-    </div>
-
-  
-    <div class="mg-card" onclick="openLightbox(this)">
-      <img src="MG_07.jpg" alt="Motion 07" onerror="this.style.display='none'">
-      <div class="frame-placeholder"><span>Motion 07</span></div>
-      <div class="frame-overlay"><span class="frame-label">Motion 07</span></div>
-    </div>
-
-    <div class="mg-card" onclick="openLightbox(this)">
-      <img src="MG_08.jpg" alt="Motion 08" onerror="this.style.display='none'">
-      <div class="frame-placeholder"><span>Motion 08</span></div>
-      <div class="frame-overlay"><span class="frame-label">Motion 08</span></div>
-    </div>
-
-    <div class="mg-card" onclick="openLightbox(this)">
-      <img src="MG_09.jpg" alt="Motion 09" onerror="this.style.display='none'">
-      <div class="frame-placeholder"><span>Motion 09</span></div>
-      <div class="frame-overlay"><span class="frame-label">Motion 09</span></div>
-    </div>
-
-    <div class="mg-card" onclick="openLightbox(this)">
-      <img src="MG_10.jpg" alt="Motion 10" onerror="this.style.display='none'">
-      <div class="frame-placeholder"><span>Motion 10</span></div>
-      <div class="frame-overlay"><span class="frame-label">Motion 10</span></div>
     </div>
 
   </div><!-- /mg-grid -->
