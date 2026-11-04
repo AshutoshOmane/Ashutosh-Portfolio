@@ -21,7 +21,7 @@
 :root{
   --paper:#E8EAE7; --paper2:#D8DBD6;
   --ink:#000; --muted:#464B48;
-  --yellow:#FFD500; --cobalt:#2B3FFF;
+  --yellow:#FFD500; --cobalt:#2B3FFF; --rec:#E10600;
   --dark-text:#E8EAE7; --dark-muted:#A5AAA6;
   --gutter:clamp(1.1rem,5vw,4rem);
   --sans:'Archivo','Arial Black',Arial,sans-serif;
@@ -29,36 +29,46 @@
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
-body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:1.0625rem;line-height:1.65;overflow-x:hidden;}
+body{
+  background-color:var(--paper);
+  /* faint timeline grid: 100px = 1 second */
+  background-image:linear-gradient(to right,rgba(0,0,0,.045) 1px,transparent 1px);
+  background-size:100px 100%;
+  color:var(--ink);font-family:var(--serif);font-size:1.0625rem;line-height:1.65;font-optical-sizing:auto;overflow-x:hidden;}
 a{color:inherit;}
 img,video,iframe{display:block;max-width:100%;}
+h1,h2,h3,h4{text-wrap:balance;}
+p{text-wrap:pretty;}
 .wrap{max-width:1360px;margin:0 auto;padding:0 var(--gutter);}
 :focus-visible{outline:3px solid var(--cobalt);outline-offset:3px;}
-.client :focus-visible,footer :focus-visible{outline-color:var(--yellow);}
+.client :focus-visible,.slate :focus-visible{outline-color:var(--yellow);}
 #work,#clientwork,#frames,#about,#skills{scroll-margin-top:96px;}
+
+/* the "interface" voice: small condensed caps, used only for NLE-style labels */
+.lbl{font-family:var(--sans);font-weight:700;font-stretch:75%;text-transform:uppercase;letter-spacing:.09em;font-size:.78rem;line-height:1;font-variant-numeric:tabular-nums;}
 
 /* NAV */
 .nav{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:2px solid var(--ink);box-shadow:0 6px 0 rgba(0,0,0,.08);}
-.nav .wrap{display:flex;justify-content:space-between;align-items:center;gap:.4rem 2rem;flex-wrap:wrap;padding-top:.8rem;padding-bottom:.8rem;}
-.brand{font-family:var(--sans);font-weight:800;font-stretch:112%;font-size:1.05rem;letter-spacing:-.01em;text-decoration:none;}
+.nav .wrap{display:flex;align-items:center;gap:.4rem 1.6rem;flex-wrap:wrap;padding-top:.75rem;padding-bottom:.75rem;}
+.brand{font-family:var(--sans);font-weight:700;font-stretch:100%;font-size:1.05rem;letter-spacing:0;text-decoration:none;margin-right:auto;}
 .nav ul{display:flex;gap:.3rem 1.6rem;list-style:none;flex-wrap:wrap;}
 .nav li a{font-family:var(--sans);font-weight:600;font-size:.95rem;text-decoration:none;padding:.2rem 0;border-bottom:2px solid transparent;}
 .nav li a:hover{border-bottom-color:var(--ink);}
+.scrub{height:4px;background:rgba(0,0,0,.14);}
+.scrub i{display:block;height:100%;width:0;background:var(--cobalt);}
 
 /* HERO */
 .hero{position:relative;background:var(--yellow);border-bottom:2px solid var(--ink);overflow:hidden;cursor:col-resize;}
-.hero-body{position:relative;z-index:2;padding-top:clamp(2.5rem,7vw,6rem);padding-bottom:clamp(2.5rem,5vw,4rem);}
-/* depth layers behind the headline: NLE tracks that drift at different speeds as you scrub */
-.tracks{position:absolute;inset:0 0 44px 0;pointer-events:none;z-index:0;overflow:hidden;}
-.lane{position:absolute;left:-12%;right:-12%;height:54px;will-change:transform;}
-.lane i{position:absolute;top:0;bottom:0;background:rgba(0,0,0,.055);border:2px solid rgba(0,0,0,.13);}
-.lane.l2 i{background:rgba(0,0,0,.09);border-color:rgba(0,0,0,.2);}
-.lane.l3 i{background:rgba(0,0,0,.14);border-color:rgba(0,0,0,.3);}
-.played{position:absolute;top:0;bottom:44px;left:0;width:0;background:rgba(0,0,0,.07);pointer-events:none;z-index:1;}
-h1{font-family:var(--sans);font-weight:850;font-stretch:125%;font-size:clamp(3rem,14.2vw,13rem);line-height:.86;letter-spacing:-.035em;margin-left:-.04em;}
+.hero-body{position:relative;z-index:2;padding-top:clamp(3.4rem,8vw,6.5rem);padding-bottom:clamp(2.5rem,5vw,4rem);}
+h1{font-family:var(--sans);font-weight:800;font-stretch:105%;font-size:clamp(3rem,13.4vw,12.5rem);line-height:.98;letter-spacing:-.015em;margin-left:-.03em;}
 h1 span{display:block;}
-.hero-row{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-top:clamp(2rem,4vw,3.5rem);}
-.pitch{font-size:clamp(1.15rem,1.9vw,1.5rem);line-height:1.4;max-width:34ch;}
+.hero-row{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-top:clamp(1.6rem,3vw,2.6rem);}
+.lt{display:flex;flex-direction:column;align-items:flex-start;gap:.35rem;margin-bottom:1.1rem;}
+.lt span{font-family:var(--sans);font-weight:700;font-stretch:100%;font-size:clamp(1rem,1.7vw,1.3rem);letter-spacing:0;padding:.45rem 1rem;animation:wipe .6s cubic-bezier(.7,0,.2,1) both;}
+.lt-a{background:var(--ink);color:var(--yellow);animation-delay:.25s !important;}
+.lt-b{background:#fff;color:var(--ink);border:2px solid var(--ink);animation-delay:.5s !important;}
+@keyframes wipe{from{clip-path:inset(0 100% 0 0);}to{clip-path:inset(0 0 0 0);}}
+.pitch{font-size:clamp(1.1rem,1.7vw,1.35rem);line-height:1.45;max-width:36ch;}
 .btns{display:flex;gap:.8rem;flex-wrap:wrap;position:relative;z-index:4;}
 .btn{font-family:var(--sans);font-weight:700;font-size:1rem;text-decoration:none;padding:.85rem 1.5rem;border:2px solid var(--ink);display:inline-block;cursor:pointer;}
 .btn-solid{background:var(--ink);color:var(--yellow);}
@@ -66,94 +76,143 @@ h1 span{display:block;}
 .btn-line{background:transparent;color:var(--ink);}
 .btn-line:hover{background:var(--ink);color:var(--yellow);}
 
-/* hero timeline ruler + playhead (100px = 1 second at 24fps) */
+/* viewfinder overlay */
+.thirds{position:absolute;inset:0 0 44px 0;pointer-events:none;z-index:0;
+  background:
+    linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1)) 33.333% 0/1px 100% no-repeat,
+    linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1)) 66.666% 0/1px 100% no-repeat,
+    linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1)) 0 33.333%/100% 1px no-repeat,
+    linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1)) 0 66.666%/100% 1px no-repeat;}
+.vf{position:absolute;inset:14px 14px 58px 14px;pointer-events:none;z-index:3;}
+.vf .c{position:absolute;width:26px;height:26px;border:0 solid var(--ink);}
+.vf .tl{top:0;left:0;border-top-width:3px;border-left-width:3px;}
+.vf .tr{top:0;right:0;border-top-width:3px;border-right-width:3px;}
+.vf .bl{bottom:0;left:0;border-bottom-width:3px;border-left-width:3px;}
+.vf .br{bottom:0;right:0;border-bottom-width:3px;border-right-width:3px;}
+.vf .lbl{position:absolute;display:flex;align-items:center;gap:.45rem;}
+.vf .l-tl{top:12px;left:42px;} .vf .l-tr{top:12px;right:42px;} .vf .l-bl{bottom:12px;left:42px;} .vf .l-br{bottom:12px;right:42px;}
+.rec{width:.65rem;height:.65rem;border-radius:50%;background:var(--rec);animation:blink 1.2s steps(1) infinite;}
+@keyframes blink{50%{opacity:0;}}
+
+/* depth layers behind the headline */
+.tracks{position:absolute;inset:0 0 44px 0;pointer-events:none;z-index:0;overflow:hidden;}
+.lane{position:absolute;left:-12%;right:-12%;height:54px;will-change:transform;}
+.lane i{position:absolute;top:0;bottom:0;background:rgba(0,0,0,.055);border:2px solid rgba(0,0,0,.13);}
+.lane.l2 i{background:rgba(0,0,0,.09);border-color:rgba(0,0,0,.2);}
+.lane.wave{display:flex;align-items:center;gap:3px;height:70px;}
+.lane.wave i{position:static;flex:0 0 3px;border:0;background:rgba(0,0,0,.17);}
+.played{position:absolute;top:0;bottom:44px;left:0;width:0;background:rgba(0,0,0,.07);pointer-events:none;z-index:1;}
+
+/* ruler + playhead (100px = 1 second at 24 fps) */
 .ruler{position:relative;height:44px;border-top:2px solid var(--ink);
   background:
     linear-gradient(to right,var(--ink) 2px,transparent 2px) 0 0/100px 100% repeat-x,
     linear-gradient(to right,var(--ink) 1px,transparent 1px) 0 0/25px 38% repeat-x;}
-.ruler span{position:absolute;top:14px;font-family:var(--sans);font-weight:600;font-size:.72rem;font-variant-numeric:tabular-nums;padding-left:7px;}
-.playhead{position:absolute;top:0;bottom:0;left:0;width:0;pointer-events:none;z-index:3;will-change:transform;}
+.ruler span{position:absolute;top:14px;padding-left:7px;}
+.playhead{position:absolute;top:0;bottom:0;left:0;width:0;pointer-events:none;z-index:4;will-change:transform;}
 .playhead::before{content:'';position:absolute;top:0;bottom:0;left:-1px;width:2px;background:var(--cobalt);}
 .playhead .flag{position:absolute;top:0;left:0;background:var(--cobalt);color:#fff;font-family:var(--sans);font-weight:700;font-size:.85rem;font-variant-numeric:tabular-nums;padding:.3rem .6rem;white-space:nowrap;}
 .playhead.flip .flag{transform:translateX(-100%);}
 
 /* SECTIONS */
 .section{padding:clamp(3.5rem,8vw,7rem) 0 clamp(3rem,6vw,5rem);}
-h2{font-family:var(--sans);font-weight:850;font-stretch:125%;font-size:clamp(2.4rem,7vw,5.5rem);line-height:.95;letter-spacing:-.03em;}
-.sec-sub{font-size:1.15rem;color:var(--muted);margin-top:1rem;max-width:44ch;}
+h2{font-family:var(--sans);font-weight:800;font-stretch:105%;font-size:clamp(2.3rem,6.4vw,5rem);line-height:1.02;letter-spacing:-.01em;}
+.sec-sub{font-family:var(--serif);font-style:italic;font-size:clamp(1.15rem,1.8vw,1.4rem);color:var(--muted);margin-top:1.1rem;max-width:40ch;line-height:1.4;}
 .jump{display:flex;gap:1.4rem;flex-wrap:wrap;margin-top:1.4rem;font-family:var(--sans);font-weight:600;font-size:.95rem;}
 .jump a{border-bottom:2px solid var(--ink);text-decoration:none;}
 .jump a:hover{color:var(--cobalt);border-bottom-color:var(--cobalt);}
 
 .track{margin-top:clamp(3rem,6vw,5rem);}
-.track-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;border-top:2px solid var(--ink);padding-top:.7rem;margin-bottom:1.6rem;}
-h3{font-family:var(--sans);font-weight:800;font-stretch:112%;font-size:clamp(1.5rem,2.6vw,2.1rem);letter-spacing:-.02em;line-height:1.1;}
-.track-count{font-family:var(--sans);font-weight:500;font-size:.95rem;color:var(--muted);font-variant-numeric:tabular-nums;}
+.track-head{display:flex;align-items:center;gap:1rem;border-top:2px solid var(--ink);padding-top:.8rem;margin-bottom:1.8rem;}
+.track-head h3{margin-right:auto;}
+h3{font-family:var(--sans);font-weight:700;font-stretch:100%;font-size:clamp(1.5rem,2.6vw,2.1rem);letter-spacing:-.005em;line-height:1.15;}
+.trk{background:var(--ink);color:var(--yellow);padding:.5rem .6rem;min-width:2.6rem;text-align:center;}
+.trk.blue{background:var(--cobalt);color:#fff;}
+.track-count{color:var(--muted);}
 
-/* CLIPS */
-.clips{display:grid;gap:2.6rem 1.8rem;}
+/* CLIPS — each video is a clip on a track */
+.clips{display:grid;gap:3rem 2rem;}
 .cols-2{grid-template-columns:repeat(2,1fr);}
 .cols-3{grid-template-columns:repeat(3,1fr);}
-.frame{position:relative;aspect-ratio:16/9;background:#000;border:2px solid var(--ink);box-shadow:8px 8px 0 var(--ink);transition:transform .15s,box-shadow .15s;}
-article:hover .frame{transform:translate(-3px,-3px);box-shadow:11px 11px 0 var(--cobalt);}
+.player{border:2px solid var(--ink);box-shadow:8px 8px 0 var(--ink);background:#000;transition:transform .15s,box-shadow .15s;}
+article:hover .player{transform:translate(-3px,-3px);box-shadow:11px 11px 0 var(--cobalt);}
+.clip-bar{display:flex;justify-content:space-between;align-items:center;gap:.8rem;padding:.5rem .75rem;border-bottom:2px solid var(--ink);}
+.clip-bar .lbl{display:flex;align-items:center;gap:.6rem;}
+.clip-bar .lbl b{font-weight:800;opacity:.75;}
+.bar-blue{background:var(--cobalt);color:#fff;}
+.bar-ink{background:var(--ink);color:var(--yellow);}
+.bar-yellow{background:var(--yellow);color:#000;}
+.frame{position:relative;aspect-ratio:16/9;background:#000;}
 .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
-.clip-top{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-top:.8rem;}
-h4{font-family:var(--sans);font-weight:700;font-size:1.3rem;letter-spacing:-.01em;line-height:1.2;}
-.kind{font-family:var(--sans);font-weight:500;font-size:.9rem;color:var(--muted);white-space:nowrap;}
-.blurb{margin-top:.35rem;color:var(--muted);font-size:1rem;line-height:1.55;max-width:56ch;}
+h4{font-family:var(--sans);font-weight:700;font-stretch:100%;font-size:1.3rem;letter-spacing:0;line-height:1.25;margin-top:1.1rem;}
+.blurb{margin-top:.4rem;color:var(--muted);font-size:1rem;line-height:1.55;max-width:56ch;}
 
 /* CLIENT WORK — dark case-file block */
 .client{position:relative;overflow-x:clip;background:radial-gradient(ellipse 65% 55% at 68% 62%,#1e1e1e 0%,#000 72%);color:var(--dark-text);border-top:2px solid var(--ink);}
 .tape{position:relative;top:-10px;z-index:3;height:20px;background:repeating-linear-gradient(-45deg,var(--yellow) 0 18px,#000 18px 36px);transform:rotate(-1.1deg) scaleX(1.06);box-shadow:0 6px 0 rgba(0,0,0,.28);}
 .client .section{padding-top:clamp(3rem,6vw,5rem);}
 .client .track-head{border-top:0;border-bottom:2px solid var(--yellow);padding-top:0;padding-bottom:.7rem;}
-.client .track-count{color:var(--dark-muted);}
 .client h2{margin-bottom:clamp(2rem,4vw,3rem);}
 .category{display:grid;grid-template-columns:minmax(220px,300px) 1fr;gap:2rem clamp(1.5rem,3vw,3rem);align-items:start;}
-.category-text h4{font-size:1.6rem;color:var(--yellow);}
+.category-text h4{font-size:1.6rem;color:var(--yellow);margin-top:0;}
 .category-text p{margin-top:.7rem;color:var(--dark-muted);font-size:1.02rem;}
-.client .frame{border-color:var(--dark-muted);box-shadow:8px 8px 0 var(--yellow);}
-article:hover .client .frame,.client article:hover .frame{box-shadow:11px 11px 0 var(--yellow);}
-.client .blurb,.client .kind{color:var(--dark-muted);}
+.client .player{border-color:var(--dark-muted);box-shadow:8px 8px 0 var(--yellow);}
+.client article:hover .player{box-shadow:11px 11px 0 var(--yellow);}
+.client .clip-bar{border-bottom-color:#000;}
+.client .blurb{color:var(--dark-muted);}
 
 /* FRAMES */
-.frames-grid,.mg-grid{display:grid;gap:1.1rem;}
-.frames-grid{grid-template-columns:repeat(3,1fr);}
-.mg-grid{grid-template-columns:repeat(4,1fr);}
-.frame-card,.mg-card{position:relative;aspect-ratio:16/9;overflow:hidden;border:2px solid var(--ink);cursor:pointer;
-  background:repeating-linear-gradient(45deg,var(--paper2) 0 10px,var(--paper) 10px 20px);box-shadow:5px 5px 0 var(--ink);transition:transform .15s;}
+.frames-grid{display:grid;gap:1.3rem;grid-template-columns:repeat(3,1fr);}
+.frame-card,.mg-card{position:relative;aspect-ratio:16/9;overflow:hidden;
+  background:repeating-linear-gradient(45deg,var(--paper2) 0 10px,var(--paper) 10px 20px);}
+.frame-card{border:2px solid var(--ink);cursor:pointer;box-shadow:5px 5px 0 var(--ink);transition:transform .15s;}
 .frame-card:hover{transform:translate(-2px,-2px);}
-.mg-card{cursor:default;}
 .frame-card img,.mg-card img,.mg-card video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;}
 .frame-placeholder{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:1;pointer-events:none;}
 .frame-placeholder span{font-family:var(--sans);font-weight:600;font-size:.85rem;background:var(--paper);border:2px solid var(--ink);padding:.15rem .6rem;}
 .frame-overlay{position:absolute;left:0;bottom:0;z-index:3;transform:translateY(100%);transition:transform .18s;}
-.frame-card:hover .frame-overlay,.frame-card:focus-visible .frame-overlay,.mg-card:hover .frame-overlay{transform:none;}
+.frame-card:hover .frame-overlay,.frame-card:focus-visible .frame-overlay{transform:none;}
 .frame-label{display:block;background:var(--ink);color:var(--yellow);font-family:var(--sans);font-weight:700;font-size:.85rem;padding:.3rem .7rem;}
 
+/* film strip for motion graphics */
+.strip{position:relative;background:#000;padding:38px 20px;box-shadow:8px 8px 0 var(--yellow),8px 8px 0 2px var(--ink);}
+.strip::before,.strip::after{content:'';position:absolute;left:0;right:0;height:13px;
+  background:repeating-linear-gradient(to right,transparent 0 12px,var(--paper) 12px 26px,transparent 26px 38px);}
+.strip::before{top:13px;} .strip::after{bottom:13px;}
+.mg-grid{display:grid;gap:.9rem;grid-template-columns:repeat(4,1fr);}
+.mg-card{border:0;outline:2px solid #2a2a2a;outline-offset:-2px;}
+.mg-card .frame-placeholder span{border-color:#000;}
+
 /* ABOUT */
+#about{background-color:var(--paper2);background-image:linear-gradient(to right,rgba(0,0,0,.05) 1px,transparent 1px);background-size:100px 100%;}
 .about-inner{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(2rem,6vw,6rem);align-items:start;margin-top:clamp(2rem,4vw,3rem);}
 .about-bio p{margin-bottom:1.25rem;max-width:58ch;}
-.about-bio p:first-child{font-size:1.3rem;line-height:1.5;}
+.about-bio p:first-child{font-size:clamp(1.3rem,2.1vw,1.65rem);line-height:1.4;font-weight:400;letter-spacing:-.005em;}
 .about-bio strong{font-weight:600;}
-#about{background:var(--paper2);}
 .about-photo{position:relative;aspect-ratio:3/4;border:2px solid var(--ink);background:var(--paper);overflow:hidden;box-shadow:10px 10px 0 var(--yellow),10px 10px 0 2px var(--ink);}
 .about-photo img{width:100%;height:100%;object-fit:contain;}
 .about-photo-placeholder{position:absolute;inset:0;display:none;align-items:center;justify-content:center;font-family:var(--sans);font-weight:600;color:var(--muted);text-align:center;padding:1rem;}
-.photo-caption{font-family:var(--sans);font-weight:500;font-size:.9rem;color:var(--muted);margin-top:.6rem;}
+.photo-caption{margin-top:1.4rem;color:var(--muted);}
 
 /* SKILLS */
-.skills{list-style:none;margin-top:clamp(2rem,4vw,3rem);max-width:760px;}
-.skills li{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;border-top:2px solid var(--ink);padding:1rem 0;}
+.skills{list-style:none;margin-top:clamp(2rem,4vw,3rem);max-width:820px;}
+.skills li{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1.2rem;border-top:2px solid var(--ink);padding:1rem 0;}
 .skills li:last-child{border-bottom:2px solid var(--ink);}
-.skills b{font-family:var(--sans);font-weight:800;font-stretch:112%;font-size:clamp(1.3rem,3vw,1.9rem);letter-spacing:-.02em;}
-.skills span{font-family:var(--sans);font-weight:500;color:var(--muted);}
+.app{width:3.4rem;height:3.4rem;display:grid;place-items:center;background:var(--bg);color:var(--fg);border:2px solid var(--ink);font-family:var(--sans);font-weight:700;font-size:1.25rem;letter-spacing:-.02em;}
+.skills b{font-family:var(--sans);font-weight:700;font-stretch:100%;font-size:clamp(1.3rem,3vw,1.9rem);letter-spacing:-.005em;}
+.skills .role{color:var(--muted);}
 
-/* FOOTER */
-footer{background:var(--ink);color:var(--dark-text);}
-footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;padding-top:1.6rem;padding-bottom:1.6rem;font-family:var(--sans);font-weight:500;font-size:.95rem;}
-footer b{font-weight:800;font-stretch:112%;color:var(--yellow);}
-footer a{text-decoration:none;border-bottom:2px solid var(--yellow);}
+/* FOOTER — clapperboard slate */
+.slate{background:#000;color:var(--dark-text);}
+.clapper{height:44px;background:repeating-linear-gradient(-58deg,#fff 0 38px,#000 38px 76px);border-bottom:2px solid #fff;}
+.slate-grid{display:grid;grid-template-columns:2fr 1.3fr .6fr .8fr;border-bottom:2px solid #fff;}
+.slate-grid > div{padding:1rem 1.2rem 1.1rem;border-right:2px solid #fff;display:flex;flex-direction:column;gap:.6rem;justify-content:space-between;}
+.slate-grid > div:last-child{border-right:0;}
+.slate-grid .lbl{color:var(--dark-muted);}
+.slate-grid b{font-family:var(--sans);font-weight:700;font-stretch:100%;font-size:clamp(1.1rem,2.2vw,1.7rem);letter-spacing:0;line-height:1.15;}
+.slate-grid a{align-self:flex-start;background:var(--yellow);color:#000;text-decoration:none;font-family:var(--sans);font-weight:700;padding:.5rem 1rem;border:2px solid var(--yellow);}
+.slate-grid a:hover{background:#000;color:var(--yellow);}
+.bars{height:12px;background:linear-gradient(to right,#fff 0 14.28%,#FFD500 0 28.56%,#00D5D5 0 42.84%,#10C23B 0 57.12%,#D415C9 0 71.4%,#E10600 0 85.68%,#2B3FFF 0);}
 
 /* LIGHTBOX */
 .lightbox-overlay{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.95);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s;padding:2rem;}
@@ -167,6 +226,9 @@ footer a{text-decoration:none;border-bottom:2px solid var(--yellow);}
 @media(max-width:1000px){
   .category{grid-template-columns:1fr;}
   .mg-grid{grid-template-columns:repeat(2,1fr);}
+  .slate-grid{grid-template-columns:1fr 1fr;}
+  .slate-grid > div:nth-child(2){border-right:0;}
+  .slate-grid > div:nth-child(-n+2){border-bottom:2px solid #fff;}
 }
 @media(max-width:860px){
   .cols-3{grid-template-columns:repeat(2,1fr);}
@@ -176,14 +238,15 @@ footer a{text-decoration:none;border-bottom:2px solid var(--yellow);}
 }
 @media(max-width:620px){
   .cols-2,.cols-3,.frames-grid{grid-template-columns:1fr;}
-  .clip-top{flex-direction:column;gap:.1rem;}
-  .btn{flex:1;text-align:center;}
+  .btn{flex:1 1 auto;text-align:center;white-space:nowrap;padding:.8rem 1rem;}
+  .vf .l-bl,.vf .l-br{display:none;}
+  .strip{padding:38px 12px;}
 }
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto;}
-  .frame,.frame-card{transition:none;}
-  article:hover .frame,.frame-card:hover{transform:none;}
-  .frame-overlay{transition:none;}
+  .lt span,.rec{animation:none;}
+  .player,.frame-card,.frame-overlay{transition:none;}
+  article:hover .player,.frame-card:hover{transform:none;}
 }
 </style>
 </head>
@@ -196,7 +259,7 @@ footer a{text-decoration:none;border-bottom:2px solid var(--yellow);}
   <div class="lightbox-counter" id="lightboxCounter"></div>
 </div>
 
-<!-- NAV -->
+<!-- NAV (the blue bar shows how far down the page you are) -->
 <nav class="nav" id="mainNav" aria-label="Main">
   <div class="wrap">
     <a class="brand" href="#top">Ashutosh Omane</a>
@@ -208,26 +271,38 @@ footer a{text-decoration:none;border-bottom:2px solid var(--yellow);}
       <li><a href="#skills">Skills</a></li>
     </ul>
   </div>
+  <div class="scrub" aria-hidden="true"><i id="scrubBar"></i></div>
 </nav>
 
 <!-- HERO -->
 <header class="hero" id="top">
+  <div class="thirds" aria-hidden="true"></div>
+  <div class="tracks" aria-hidden="true">
+    <div class="lane l1" data-speed="0.05" style="top:7%"><i style="left:4%;width:22%"></i><i style="left:28%;width:14%"></i><i style="left:44%;width:30%"></i><i style="left:76%;width:18%"></i></div>
+    <div class="lane l2" data-speed="0.11" style="top:36%"><i style="left:10%;width:16%"></i><i style="left:28%;width:26%"></i><i style="left:56%;width:12%"></i><i style="left:70%;width:24%"></i></div>
+    <div class="lane wave" id="wave" data-speed="0.19" style="top:66%"></div>
+  </div>
+  <div class="played" id="played" aria-hidden="true"></div>
+  <div class="vf" aria-hidden="true">
+    <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
+    <span class="lbl l-tl"><i class="rec"></i>REC</span>
+    <span class="lbl l-tr">CAM A &nbsp;·&nbsp; 24 FPS</span>
+    <span class="lbl l-bl">Pune, India</span>
+    <span class="lbl l-br">Reel 2026</span>
+  </div>
   <div class="wrap hero-body">
     <h1><span>Ashutosh</span><span>Omane</span></h1>
     <div class="hero-row">
-      <p class="pitch">Video editor and motion designer in Pune. Documentaries, reels and motion graphics for creators and brands.</p>
+      <div>
+        <div class="lt"><span class="lt-a">Video editor</span><span class="lt-b">Motion designer</span></div>
+        <p class="pitch">I cut long-form documentaries, short-form reels and motion graphics for creators and brands.</p>
+      </div>
       <div class="btns">
         <a href="#work" class="btn btn-solid">See the work</a>
         <a href="resumev2.pdf" class="btn btn-line" target="_blank" rel="noopener">Resume</a>
       </div>
     </div>
   </div>
-  <div class="tracks" aria-hidden="true">
-    <div class="lane l1" data-speed="0.05" style="top:8%"><i style="left:4%;width:22%"></i><i style="left:28%;width:14%"></i><i style="left:44%;width:30%"></i><i style="left:76%;width:18%"></i></div>
-    <div class="lane l2" data-speed="0.11" style="top:36%"><i style="left:10%;width:16%"></i><i style="left:28%;width:26%"></i><i style="left:56%;width:12%"></i><i style="left:70%;width:24%"></i></div>
-    <div class="lane l3" data-speed="0.19" style="top:66%"><i style="left:0%;width:30%"></i><i style="left:32%;width:11%"></i><i style="left:45%;width:20%"></i><i style="left:67%;width:28%"></i></div>
-  </div>
-  <div class="played" id="played" aria-hidden="true"></div>
   <div class="ruler" id="ruler" aria-hidden="true"></div>
   <div class="playhead" id="playhead" aria-hidden="true"><div class="flag" id="timecode">00:00:00:00</div></div>
 </header>
@@ -246,26 +321,38 @@ footer a{text-decoration:none;border-bottom:2px solid var(--yellow);}
 
     <!-- LONG FORM -->
     <div class="track" id="longform">
-      <div class="track-head"><h3>Long form</h3><span class="track-count">4 videos</span></div>
+      <div class="track-head"><span class="lbl trk blue">V1</span><h3>Long form</h3><span class="lbl track-count">4 clips</span></div>
       <div class="clips cols-2">
         <article>
-          <div class="frame"><iframe title="Dubai" src="https://www.youtube-nocookie.com/embed/dAMVQ7V5I7E" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
-          <div class="clip-top"><h4>Dubai</h4><span class="kind">Documentary style</span></div>
+          <div class="player">
+            <div class="clip-bar bar-blue"><span class="lbl"><b>V1</b> Documentary style</span></div>
+            <div class="frame"><iframe title="Dubai" src="https://www.youtube-nocookie.com/embed/dAMVQ7V5I7E" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+          </div>
+          <h4>Dubai</h4>
           <p class="blurb">Documentary-style edit featuring storytelling, motion graphics, pacing, and visual structure.</p>
         </article>
         <article>
-          <div class="frame"><iframe title="Credit System" src="https://www.youtube-nocookie.com/embed/GpUC7dztifI" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
-          <div class="clip-top"><h4>Credit System</h4><span class="kind">Explainer</span></div>
+          <div class="player">
+            <div class="clip-bar bar-blue"><span class="lbl"><b>V1</b> Explainer</span></div>
+            <div class="frame"><iframe title="Credit System" src="https://www.youtube-nocookie.com/embed/GpUC7dztifI" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+          </div>
+          <h4>Credit System</h4>
           <p class="blurb">Educational content focused on information delivery, visual explanations, and audience retention.</p>
         </article>
         <article>
-          <div class="frame"><iframe title="British Education System" src="https://www.youtube-nocookie.com/embed/VqE7ST3QYgY" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
-          <div class="clip-top"><h4>British Education System</h4><span class="kind">Documentary</span></div>
+          <div class="player">
+            <div class="clip-bar bar-blue"><span class="lbl"><b>V1</b> Documentary</span></div>
+            <div class="frame"><iframe title="British Education System" src="https://www.youtube-nocookie.com/embed/VqE7ST3QYgY" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+          </div>
+          <h4>British Education System</h4>
           <p class="blurb">Research-driven documentary edit using motion graphics, and narrative pacing.</p>
         </article>
         <article>
-          <div class="frame"><iframe title="Putin" src="https://www.youtube-nocookie.com/embed/mmoeqBzVQ0g" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
-          <div class="clip-top"><h4>Putin</h4><span class="kind">Documentary style</span></div>
+          <div class="player">
+            <div class="clip-bar bar-blue"><span class="lbl"><b>V1</b> Documentary style</span></div>
+            <div class="frame"><iframe title="Putin" src="https://www.youtube-nocookie.com/embed/mmoeqBzVQ0g" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+          </div>
+          <h4>Putin</h4>
           <p class="blurb">Documentary-style edit featuring storytelling, motion graphics, pacing, and visual structure.</p>
         </article>
       </div>
@@ -273,21 +360,30 @@ footer a{text-decoration:none;border-bottom:2px solid var(--yellow);}
 
     <!-- SHORT FORM -->
     <div class="track" id="shortform">
-      <div class="track-head"><h3>Short form</h3><span class="track-count">3 videos</span></div>
+      <div class="track-head"><span class="lbl trk">V2</span><h3>Short form</h3><span class="lbl track-count">3 clips</span></div>
       <div class="clips cols-3">
         <article>
-          <div class="frame"><iframe title="BeerBiceps & Ronnie Coleman" src="https://www.youtube-nocookie.com/embed/6tYzQPLRQNM" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
-          <div class="clip-top"><h4>BeerBiceps & Ronnie Coleman</h4><span class="kind">Edit</span></div>
+          <div class="player">
+            <div class="clip-bar bar-ink"><span class="lbl"><b>V2</b> Edit</span></div>
+            <div class="frame"><iframe title="BeerBiceps & Ronnie Coleman" src="https://www.youtube-nocookie.com/embed/6tYzQPLRQNM" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+          </div>
+          <h4>BeerBiceps & Ronnie Coleman</h4>
           <p class="blurb">Dynamic short-form edit featuring subtitles, visual emphasis, and retention-focused pacing.</p>
         </article>
         <article>
-          <div class="frame"><iframe title="Modern Economy" src="https://www.youtube-nocookie.com/embed/SOH-VBAbvw8" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
-          <div class="clip-top"><h4>Modern Economy</h4><span class="kind">Explainer</span></div>
+          <div class="player">
+            <div class="clip-bar bar-ink"><span class="lbl"><b>V2</b> Explainer</span></div>
+            <div class="frame"><iframe title="Modern Economy" src="https://www.youtube-nocookie.com/embed/SOH-VBAbvw8" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+          </div>
+          <h4>Modern Economy</h4>
           <p class="blurb">Educational short-form content using motion graphics and concise visual storytelling.</p>
         </article>
         <article>
-          <div class="frame"><iframe title="The Aluminium Can" src="https://www.youtube-nocookie.com/embed/8YenM8sbyyQ" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
-          <div class="clip-top"><h4>The Aluminium Can</h4><span class="kind">Motion design</span></div>
+          <div class="player">
+            <div class="clip-bar bar-ink"><span class="lbl"><b>V2</b> Motion design</span></div>
+            <div class="frame"><iframe title="The Aluminium Can" src="https://www.youtube-nocookie.com/embed/8YenM8sbyyQ" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+          </div>
+          <h4>The Aluminium Can</h4>
           <p class="blurb">Flat geometric illustration-style reel exploring raw material export vs value-added manufacturing — and what it means for talent.</p>
         </article>
       </div>
@@ -298,7 +394,7 @@ footer a{text-decoration:none;border-bottom:2px solid var(--yellow);}
 <!-- ═══════════════════════════════════════════════════════
      CLIENT WORK
      To add another category (e.g. "Brand ads"), copy a whole
-     <div class="category"> block and paste it below the first.
+     category block and paste it below the first.
      To add a video to a category, copy one <article> block.
      To start a video at a specific second, add ?start=SECONDS
      to the embed URL (already done for the two below).
@@ -315,12 +411,18 @@ footer a{text-decoration:none;border-bottom:2px solid var(--yellow);}
         </div>
         <div class="clips cols-2">
           <article>
-            <div class="frame"><iframe title="True Crime Documentary 1" src="https://www.youtube-nocookie.com/embed/GZorMDqi-V8?start=2" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
-            <div class="clip-top"><h4>True Crime Documentary 1</h4><span class="kind">Long form</span></div>
+            <div class="player">
+              <div class="clip-bar bar-yellow"><span class="lbl"><b>V3</b> Long form</span></div>
+              <div class="frame"><iframe title="True Crime Documentary 1" src="https://www.youtube-nocookie.com/embed/GZorMDqi-V8?start=2" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+            </div>
+            <h4>True Crime Documentary 1</h4>
           </article>
           <article>
-            <div class="frame"><iframe title="True Crime Documentary 2" src="https://www.youtube-nocookie.com/embed/4EZxPlDtwc0?start=821" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
-            <div class="clip-top"><h4>True Crime Documentary 2</h4><span class="kind">Long form</span></div>
+            <div class="player">
+              <div class="clip-bar bar-yellow"><span class="lbl"><b>V3</b> Long form</span></div>
+              <div class="frame"><iframe title="True Crime Documentary 2" src="https://www.youtube-nocookie.com/embed/4EZxPlDtwc0?start=821" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+            </div>
+            <h4>True Crime Documentary 2</h4>
           </article>
         </div>
       </div>
@@ -338,7 +440,7 @@ footer a{text-decoration:none;border-bottom:2px solid var(--yellow);}
      4. To add more: copy a <div class="frame-card"> block into .frames-grid
      5. To remove an unused slot: delete its whole frame-card block
 
-     MOTION GRAPHICS
+     MOTION GRAPHICS (sits on the film strip)
      - Still: <img src="mg-frame.jpg" alt="Motion 01">
      - Clip:  <video src="clip.mp4" autoplay muted loop playsinline></video>
 ═══════════════════════════════════════════════════════ -->
@@ -348,7 +450,7 @@ footer a{text-decoration:none;border-bottom:2px solid var(--yellow);}
     <p class="sec-sub">Photoshop frames and motion graphic stills from projects.</p>
 
     <div class="track">
-      <div class="track-head"><h3>Selected frames</h3></div>
+      <div class="track-head"><span class="lbl trk">STILL</span><h3>Selected frames</h3></div>
       <div class="frames-grid" id="psFramesGrid">
         <div class="frame-card" tabindex="0" role="button" aria-label="Open Frame 01" onclick="openLightbox(this)"><img src="FRAME_01.jpg" alt="Frame 01" onerror="this.style.display='none'"><div class="frame-placeholder"><span>Frame 01</span></div><div class="frame-overlay"><span class="frame-label">Frame 01</span></div></div>
         <div class="frame-card" tabindex="0" role="button" aria-label="Open Frame 02" onclick="openLightbox(this)"><img src="FRAME_02.jpg" alt="Frame 02" onerror="this.style.display='none'"><div class="frame-placeholder"><span>Frame 02</span></div><div class="frame-overlay"><span class="frame-label">Frame 02</span></div></div>
@@ -363,16 +465,18 @@ footer a{text-decoration:none;border-bottom:2px solid var(--yellow);}
     </div>
 
     <div class="track">
-      <div class="track-head"><h3>Visual design</h3></div>
-      <div class="mg-grid">
-        <div class="mg-card"><video autoplay muted loop playsinline preload="metadata"><source src="MG_01.mp4" type="video/mp4"></video><div class="frame-placeholder"><span>Motion 01</span></div></div>
-        <div class="mg-card"><video autoplay muted loop playsinline preload="metadata"><source src="MG_02.mp4" type="video/mp4"></video><div class="frame-placeholder"><span>Motion 02</span></div></div>
-        <div class="mg-card"><video autoplay muted loop playsinline preload="metadata"><source src="MG_03.mp4" type="video/mp4"></video><div class="frame-placeholder"><span>Motion 03</span></div></div>
-        <div class="mg-card"><video autoplay muted loop playsinline preload="metadata"><source src="MG_04.mp4" type="video/mp4"></video><div class="frame-placeholder"><span>Motion 04</span></div></div>
-        <div class="mg-card"><video autoplay muted loop playsinline preload="metadata"><source src="MG_05.mp4" type="video/mp4"></video><div class="frame-placeholder"><span>Motion 05</span></div></div>
-        <div class="mg-card"><video autoplay muted loop playsinline preload="metadata"><source src="MG_06.mp4" type="video/mp4"></video><div class="frame-placeholder"><span>Motion 06</span></div></div>
-        <div class="mg-card"><video autoplay muted loop playsinline preload="metadata"><source src="MG_07.mp4" type="video/mp4"></video><div class="frame-placeholder"><span>Motion 07</span></div></div>
-        <div class="mg-card"><video autoplay muted loop playsinline preload="metadata"><source src="MG_08.mp4" type="video/mp4"></video><div class="frame-placeholder"><span>Motion 08</span></div></div>
+      <div class="track-head"><span class="lbl trk blue">MG</span><h3>Visual design</h3></div>
+      <div class="strip">
+        <div class="mg-grid">
+          <div class="mg-card"><video autoplay muted loop playsinline preload="metadata"><source src="MG_01.mp4" type="video/mp4"></video><div class="frame-placeholder"><span>Motion 01</span></div></div>
+          <div class="mg-card"><video autoplay muted loop playsinline preload="metadata"><source src="MG_02.mp4" type="video/mp4"></video><div class="frame-placeholder"><span>Motion 02</span></div></div>
+          <div class="mg-card"><video autoplay muted loop playsinline preload="metadata"><source src="MG_03.mp4" type="video/mp4"></video><div class="frame-placeholder"><span>Motion 03</span></div></div>
+          <div class="mg-card"><video autoplay muted loop playsinline preload="metadata"><source src="MG_04.mp4" type="video/mp4"></video><div class="frame-placeholder"><span>Motion 04</span></div></div>
+          <div class="mg-card"><video autoplay muted loop playsinline preload="metadata"><source src="MG_05.mp4" type="video/mp4"></video><div class="frame-placeholder"><span>Motion 05</span></div></div>
+          <div class="mg-card"><video autoplay muted loop playsinline preload="metadata"><source src="MG_06.mp4" type="video/mp4"></video><div class="frame-placeholder"><span>Motion 06</span></div></div>
+          <div class="mg-card"><video autoplay muted loop playsinline preload="metadata"><source src="MG_07.mp4" type="video/mp4"></video><div class="frame-placeholder"><span>Motion 07</span></div></div>
+          <div class="mg-card"><video autoplay muted loop playsinline preload="metadata"><source src="MG_08.mp4" type="video/mp4"></video><div class="frame-placeholder"><span>Motion 08</span></div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -396,7 +500,7 @@ footer a{text-decoration:none;border-bottom:2px solid var(--yellow);}
           <img id="aboutPhoto" src="Photo.jpg" alt="Ashutosh Omane" onerror="this.style.display='none';document.getElementById('photoPlaceholder').style.display='flex';">
           <div class="about-photo-placeholder" id="photoPlaceholder">Add your photo as Photo.jpg</div>
         </div>
-        <p class="photo-caption">Ashutosh Omane, Pune, India</p>
+        <p class="lbl photo-caption">Ashutosh Omane &nbsp;·&nbsp; Pune, India</p>
       </div>
     </div>
   </div>
@@ -407,21 +511,26 @@ footer a{text-decoration:none;border-bottom:2px solid var(--yellow);}
   <div class="wrap">
     <h2>Skills and software</h2>
     <ul class="skills">
-      <li><b>Premiere Pro</b><span>Video editing</span></li>
-      <li><b>After Effects</b><span>Visual design</span></li>
-      <li><b>Photoshop</b><span>Image design</span></li>
-      <li><b>Illustrator</b><span>Vector design</span></li>
+      <li><span class="app" style="--bg:#00005B;--fg:#9999FF">Pr</span><b>Premiere Pro</b><span class="lbl role">Video editing</span></li>
+      <li><span class="app" style="--bg:#00005B;--fg:#D291FF">Ae</span><b>After Effects</b><span class="lbl role">Visual design</span></li>
+      <li><span class="app" style="--bg:#001E36;--fg:#31A8FF">Ps</span><b>Photoshop</b><span class="lbl role">Image design</span></li>
+      <li><span class="app" style="--bg:#330000;--fg:#FF9A00">Ai</span><b>Illustrator</b><span class="lbl role">Vector design</span></li>
     </ul>
   </div>
 </section>
 </main>
 
-<footer>
-  <div class="wrap">
-    <b>Ashutosh Omane</b>
-    <span>Video editor and motion designer, Pune, India</span>
-    <a href="resumev2.pdf" target="_blank" rel="noopener">Resume</a>
+<footer class="slate">
+  <div class="clapper" aria-hidden="true"></div>
+  <div class="wrap" style="max-width:none;padding:0;">
+    <div class="slate-grid">
+      <div><span class="lbl">Editor</span><b>Ashutosh Omane</b></div>
+      <div><span class="lbl">Location</span><b>Pune, India</b></div>
+      <div><span class="lbl">Take</span><b>01</b></div>
+      <div><span class="lbl">Resume</span><a href="resumev2.pdf" target="_blank" rel="noopener">Open PDF</a></div>
+    </div>
   </div>
+  <div class="bars" aria-hidden="true"></div>
 </footer>
 
 <script>
@@ -429,14 +538,23 @@ footer a{text-decoration:none;border-bottom:2px solid var(--yellow);}
 (function(){
   const hero=document.getElementById('top'),ruler=document.getElementById('ruler'),
         head=document.getElementById('playhead'),tc=document.getElementById('timecode'),
-        played=document.getElementById('played'),lanes=document.querySelectorAll('.lane');
+        played=document.getElementById('played'),lanes=document.querySelectorAll('.lane'),
+        wave=document.getElementById('wave');
   const FPS=24,PX_PER_SEC=100;
   const pad=n=>String(n).padStart(2,'0');
+  /* audio-waveform lane */
+  for(let i=0;i<340;i++){
+    const a=Math.abs(Math.sin(i*.37)*Math.sin(i*.11+1))*(.6+.4*Math.sin(i*.05));
+    const b=document.createElement('i');
+    b.style.height=(12+88*a)+'%';
+    wave.appendChild(b);
+  }
   function buildRuler(){
     ruler.innerHTML='';
     const secs=Math.ceil(hero.clientWidth/PX_PER_SEC);
     for(let s=0;s<secs;s++){
       const l=document.createElement('span');
+      l.className='lbl';
       l.style.left=(s*PX_PER_SEC)+'px';
       l.textContent='00:'+pad(s);
       ruler.appendChild(l);
@@ -463,6 +581,21 @@ footer a{text-decoration:none;border-bottom:2px solid var(--yellow);}
   window.addEventListener('resize',()=>{buildRuler();setX(hero.clientWidth*.36);});
   buildRuler();
   setX(hero.clientWidth*.36);
+})();
+
+/* ── Page scroll progress bar ──────────────────────────── */
+(function(){
+  const bar=document.getElementById('scrubBar');
+  let ticking=false;
+  function update(){
+    const max=document.documentElement.scrollHeight-window.innerHeight;
+    const p=max>0?Math.min(1,Math.max(0,window.scrollY/max)):0;
+    bar.style.width=(p*100)+'%';
+    ticking=false;
+  }
+  window.addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(update);}},{passive:true});
+  window.addEventListener('resize',update);
+  update();
 })();
 
 /* ── Lightbox ──────────────────────────────────────────── */
